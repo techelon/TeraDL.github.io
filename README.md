@@ -41,11 +41,6 @@
             <img src="assets/screenshot3.png" alt="Image" style="width: 100%; height: auto;">
         </td>
     </tr>
-    <tr>
-        <td style="border: 1px solid transparent; padding: 5px; text-align: center;">Main Menu</td>
-        <td style="border: 1px solid transparent; padding: 5px; text-align: center;">Result</td>
-        <td style="border: 1px solid transparent; padding: 5px; text-align: center;">Information</td>
-    </tr>
 </table>
 
 ### TechStack
