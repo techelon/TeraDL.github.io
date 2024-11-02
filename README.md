@@ -29,16 +29,22 @@
 
 ### Screenshot
 
-<table style="border-collapse: collapse;">
+<table style="border-collapse: collapse; width: 100%; max-width: 800px; table-layout: fixed;">
     <tr>
-        <td style="border: 1px solid transparent; padding: 5px;"><img src="assets/screenshot1.png" alt="Image" height="300px" align="center"></td>
-        <td style="border: 1px solid transparent; padding: 5px;"><img src="assets/screenshot2.png" alt="Image" height="300px" align="center"></td>
-        <td style="border: 1px solid transparent; padding: 5px;"><img src="assets/screenshot3.png" alt="Image" height="300px" align="center"></td>
+        <td style="border: 1px solid transparent; padding: 5px; text-align: center;">
+            <img src="assets/screenshot1.png" alt="Image" style="width: 100%; height: auto;">
+        </td>
+        <td style="border: 1px solid transparent; padding: 5px; text-align: center;">
+            <img src="assets/screenshot2.png" alt="Image" style="width: 100%; height: auto;">
+        </td>
+        <td style="border: 1px solid transparent; padding: 5px; text-align: center;">
+            <img src="assets/screenshot3.png" alt="Image" style="width: 100%; height: auto;">
+        </td>
     </tr>
     <tr>
-        <td style="border: 1px solid transparent; padding: 5px; text-align:center;" align="center">Main Menu</td>
-        <td style="border: 1px solid transparent; padding: 5px; text-align:center;" align="center">Result</td>
-        <td style="border: 1px solid transparent; padding: 5px; text-align:center;" align="center">Information</td>
+        <td style="border: 1px solid transparent; padding: 5px; text-align: center;">Main Menu</td>
+        <td style="border: 1px solid transparent; padding: 5px; text-align: center;">Result</td>
+        <td style="border: 1px solid transparent; padding: 5px; text-align: center;">Information</td>
     </tr>
 </table>
 
