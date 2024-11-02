@@ -1,0 +1,272 @@
+/* Full Container */
+
+.full-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+}
+
+/* Headers, Title, and Subtitle */
+
+.container-information-button {
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    width: 25px;
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-information-button i {
+    font-size: 14px;
+    color: #6c79df;
+    cursor: pointer;
+}
+
+.container-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 24px 0px 8px 0px;
+    overflow: hidden;
+}
+
+.container-header span {
+    margin: 0;
+    overflow: hidden;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0px 30px;
+}
+
+.container-header .title {
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 1;
+    color: #586afa;
+}
+
+.container-header .subtitle {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #212f99;
+}
+
+/* Input Form */
+
+.container-input {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 10px 25px;
+    gap: 4px;
+    overflow: hidden;
+}
+
+.container-input input,
+.container-input button {
+    height: 30px;
+    text-decoration: none;
+    outline: none;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.container-input input {
+    flex: 1;
+    color: #6470ce;
+    border: solid 1px #6470ce;
+    padding: 0px 9px 0px 9px;
+    cursor: pointer;
+}
+
+.container-input input::placeholder {
+    color: #6470cea4;
+}
+
+.container-input button {
+    background-color: #8291ff;
+    color: white;
+    width: 40px;
+    font-size: 16px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* Result */
+
+.container-result {
+    width: 100%;
+    height: calc(100vh - 200px);
+    box-sizing: border-box;
+    padding: 0px 15px 0px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.box-result {
+    height: 100%;
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+    padding: 10px 10px 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    overflow-y: auto;
+    max-height: 500px;
+    position: relative;
+}
+
+.container-item {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+    border: none;
+    border-radius: 8px;
+    height: 90px;
+    width: 100%;
+    max-width: 449px;
+    min-width: 209px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    overflow: hidden;
+}
+
+.container-image {
+    height: 100%;
+    aspect-ratio: 4/3;
+    flex: 0 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+.container-image img {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 6px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.container-info {
+    height: 100%;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 6px 15px 4px 2px;
+    position: relative;
+}
+
+.container-info .title {
+    color: #6c79df;
+    line-height: 1.15;
+    font-size: 16px;
+    font-weight: 500;
+    max-height: 38px;
+    overflow: hidden;
+    word-break: break-all;
+    overflow-wrap: break-word;
+}
+
+.container-button {
+    width: 90%;
+    height: 30px;
+    position: absolute;
+    bottom: 6px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.container-download-button,
+.container-stream-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.container-download-button {
+    flex: 3;
+}
+
+.container-stream-button {
+    flex: 1;
+}
+
+.download-button,
+.stream-button {
+    border: none;
+    outline: none;
+    height: 80%;
+    border: none;
+    border-radius: 4px;
+    overflow: hidden;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.download-button {
+    width: 100%;
+    font-size: 12px;
+    padding-bottom: 1.5px;
+    color: #7a88f7;
+    background-color: white;
+    border: solid 1px #a2adff;
+}
+
+.stream-button {
+    width: 100%;
+    font-size: 10px;
+    padding-top: 2px;
+    color: white;
+    background-color: #a2adff;
+}
+
+/* Failed Result */
+
+.container-failed {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-failed span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
