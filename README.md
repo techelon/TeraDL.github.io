@@ -7,7 +7,7 @@
 <table style="border-collapse: collapse;">
     <tr>
         <td style="border: 1px solid transparent; line-height:1.3; padding: 0px;">Version</td>
-        <td style="border: 1px solid transparent; line-height:1.3; padding: 0px;">1.3</td>
+        <td style="border: 1px solid transparent; line-height:1.3; padding: 0px;">1.4</td>
     </tr>
     <tr>
         <td style="border: 1px solid transparent; line-height:1.3; padding: 0px;">Website</td>
@@ -55,6 +55,9 @@
         <td style="border: 1px solid transparent; line-height:1.3; padding: 0px;">HTML, CSS (VanillaCSS), Javascript (VanillaJS)</td>
     </tr>
 </table>
+
+### Apa Yang Baru Di Versi 1.4?
+- Fitur streaming video secara langsung
 
 ### Apa Yang Baru Di Versi 1.3?
 - Penambahan mode baru *(`get link` dengan `cookies` dari sisi server)* sehingga URL download lebih awet, meminimalisir error, dan proses download menjadi lebih cepat

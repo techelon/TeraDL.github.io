@@ -49,6 +49,19 @@ function loading2(element_id, active) {
     }
 }
 
+// Loading Spinner 3
+function loading3(element_id, active) {
+    const loadingBox = document.getElementById(element_id);
+    if (active)  {
+        loadingBox.innerHTML = `<div id="loading-spinner" class="spinner-container"><div class="spinner2"></div></div>`;
+        loadingBox.style.pointerEvents = 'none';
+    }
+    else {
+        loadingBox.innerHTML = `<i class="fa-solid fa-play"></i>`;
+        loadingBox.style.pointerEvents = 'auto';
+    }
+}
+
 // Time Sleep
 function sleep(s) {
     return new Promise(resolve => setTimeout(resolve, s*1000));
@@ -143,17 +156,21 @@ async function printItem(item) {
     new_element.id = `file-${item.fs_id}`;
     new_element.className = 'container-item';
     new_element.innerHTML = `
-        <div id="image-${item.fs_id}" class="container-image"><img src="${item.image}" onclick="zoom(this)"></div>
-        <div class="container-info">
-            <span id="title-${item.fs_id}" class="title">${item.name}</span>
-            <div class="container-button">
-                <div id="container-download-${item.fs_id}" class="container-download-button">
-                    <button id="get-download-${item.fs_id}" type="button" class="download-button">Download ${convertToMB(item.size)} MB</button>
-                </div>
-                <div class="container-stream-button">
-                    <button id="stream-${item.fs_id}" type="button" class="stream-button"><i class="fa-solid fa-play"></i></button>
+        <div class="container-item-default">
+            <div id="image-${item.fs_id}" class="container-image"><img src="${item.image}" onclick="zoom(this)"></div>
+            <div class="container-info">
+                <span id="title-${item.fs_id}" class="title">${item.name}</span>
+                <div class="container-button">
+                    <div id="container-download-${item.fs_id}" class="container-download-button">
+                        <button id="get-download-${item.fs_id}" type="button" class="download-button">Download ${convertToMB(item.size)} MB</button>
+                    </div>
+                    <div class="container-stream-button">
+                        <button id="stream-${item.fs_id}" type="button" class="stream-button"><i class="fa-solid fa-play"></i></button>
+                    </div>
                 </div>
             </div>
+        </div>
+        <div id="video-box-${item.fs_id}" class="container-item-expand false">
         </div>`;
     box_result.appendChild(new_element);
 
@@ -165,7 +182,8 @@ async function printItem(item) {
 
     const streamButton = new_element.querySelector(`#stream-${item.fs_id}`);
     streamButton.addEventListener('click', () => {
-        initStream(item.fs_id)
+        if (mode == 1) initStream(item.fs_id);
+        else if (mode == 2) initStream(item.fs_id, item.link);
     });
 }
 
@@ -224,15 +242,55 @@ async function startDownload(url) {
 }
 
 // Initialization for stream
-async function initStream(fs_id) {
-    // console.log('Stream', fs_id);
-    alert('Maaf, Fitur Streaming Belum Tersedia');
+async function initStream(fs_id, dlink=null) {
+    const expanded_box = document.getElementById(`file-${fs_id}`);
+    const video_box = document.getElementById(`video-box-${fs_id}`);
+    if (expanded_box.className == 'container-item') {
+        const source_vid = document.getElementById(`video-box-${fs_id}`);
+        if (source_vid.innerHTML.replace(/\s/g, '') === '') {
+
+            loading3(`stream-${fs_id}`, true);
+            const url_stream = await getURLStream(fs_id, dlink);
+            source_vid.innerHTML = `
+                <video controls>
+                    <source id="stream-video-${fs_id}" src="${url_stream}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>`;
+            loading3(`stream-${fs_id}`, false);
+
+        }
+        expanded_box.className = 'container-item expand';
+        video_box.className = 'container-item-expand';
+    }
+    else {
+        expanded_box.className = 'container-item';
+        video_box.className = 'container-item-expand false';
+    }
 }
 
-// Initialization
+// Get URL Stream
+async function getURLStream(fs_id, dlink=null) {
 
-// async function main() {
-//     mode = await getConfig();
-// }
+    let param;
 
-// main();
+    try {
+        if (dlink) {param = {'url':dlink, 'mode':mode};}
+        else {param = {...params, 'fs_id':fs_id, 'mode':mode};}
+
+        const get_link_url = `${api}/generate_link`;
+        const headers = {'Content-Type':'application/json'};
+        const data = {
+            'method'  : 'POST',
+            'mode'    : 'cors',
+            'headers' : headers,
+            'body'    : JSON.stringify(param)
+        };
+
+        const req = await fetch(get_link_url, data);
+        const response = await req.json();
+
+        if (response.status == 'success') return(response['download_link']['url_2']);
+        else return('');
+    }
+    catch {return('');}
+}
