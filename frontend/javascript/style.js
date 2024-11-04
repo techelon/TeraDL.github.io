@@ -1,5 +1,5 @@
 // Version
-const version = 'Versi 1.2';
+const version = 'Versi 1.3';
 document.getElementById('app-version').innerText = version;
 
 // Open Information Menu
@@ -19,7 +19,6 @@ const list_qna = [
     {'question':'Bagaimana cara menggunakannya?', 'answer':'Cukup masukkan URL Terabox yang ingin kamu download, tekan submit, tunggu hingga muncul daftar file, kemudian pilih opsi Download atau Play Streaming'},
     {'question':'Apa perbedaan download 1, 2, dan 3?', 'answer':'Opsi 1 adalah download URL dengan kecepatan pelan tapi pasti<div class="divisor-spacing"></div>Opsi 2 adalah download URL dengan kecepatan medium<div class="divisor-spacing"></div>Opsi 3 adalah download URL dengan kecepatan tinggi namun sering error'},
     {'question':'Apakah platform ini resmi?', 'answer':'Platform ini dibuat secara mandiri dan tidak memiliki asosiasi dengan Terabox. Segala tindakan adalah tanggung jawab pengguna'},
-    {'question':`Apa yang baru di ${version}?`, 'answer':'Perbaikan API dari TeraStream<div class="divisor-spacing"></div>Perbaikan logika get link download agar loading file lebih cepat'},
 ];
 
 function addInfo() {

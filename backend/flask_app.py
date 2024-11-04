@@ -18,16 +18,24 @@ def stream() -> Response:
         'status'  : 'success',
         'service' : [
             {
+                'method'   : 'GET',
+                'endpoint' : 'get_config',
+                'url'      : '{}get_config'.format(request.url_root),
+                'params'   : [],
+                'response' : ['status', 'mode']},
+            {
                 'method'   : 'POST',
                 'endpoint' : 'generate_file',
                 'url'      : '{}generate_file'.format(request.url_root),
-                'params'   : ['url'],
+                'params'   : ['mode', 'url'],
                 'response' : ['status', 'js_token', 'browser_id', 'cookie', 'sign', 'timestamp', 'shareid', 'uk', 'list']},
             {
                 'method'   : 'POST',
                 'endpoint' : 'generate_link',
                 'url'      : '{}generate_link'.format(request.url_root),
-                'params'   : ['js_token', 'cookie', 'sign', 'timestamp', 'shareid', 'uk', 'fs_id'],
+                'params'   : {
+                    'mode1' : ['mode', 'js_token', 'cookie', 'sign', 'timestamp', 'shareid', 'uk', 'fs_id'],
+                    'mode2' : ['mode', 'url']},
                 'response' : ['status', 'download_link']}],
         'message' : 'hayo mau ngapain?'}
     return Response(response=json.dumps(obj=response, sort_keys=False), mimetype='application/json')

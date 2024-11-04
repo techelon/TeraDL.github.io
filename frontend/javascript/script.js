@@ -143,7 +143,7 @@ async function printItem(item) {
     new_element.id = `file-${item.fs_id}`;
     new_element.className = 'container-item';
     new_element.innerHTML = `
-        <div id="image-${item.fs_id}" class="container-image"><img src="${item.image}" onclick="zoom(this)" crossOrigin="anonymous"></div>
+        <div id="image-${item.fs_id}" class="container-image"><img src="${item.image}" onclick="zoom(this)"></div>
         <div class="container-info">
             <span id="title-${item.fs_id}" class="title">${item.name}</span>
             <div class="container-button">
@@ -231,8 +231,8 @@ async function initStream(fs_id) {
 
 // Initialization
 
-async function main() {
-    mode = await getConfig();
-}
+// async function main() {
+//     mode = await getConfig();
+// }
 
-main();
+// main();

@@ -1,4 +1,4 @@
-import re, requests, json
+import re, requests, json, urllib
 
 headers : dict[str, str] = {'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36'}
 
@@ -66,13 +66,19 @@ class TeraboxFile():
     def getMainFile(self) -> None:
         params = {'jsToken':self.result['js_token'], 'shorturl':'1' + self.short_url, **self.folder_params}
         url = 'https://dm.terabox.com/api/shorturlinfo?' + '&'.join([f'{a}={b}' for a,b in params.items()])
-        req : object = self.r.get(url, headers=self.headers, cookies={'cookie':''}).json()
-        if req.get('list'):
+        req : object = self.r.get(url, headers=self.headers, cookies={'cookie':self.cookie}).json()
+        root_dir = req.get('list')
+
+        if root_dir:
             self.result['sign']      = req['sign']
             self.result['timestamp'] = req['timestamp']
             self.result['shareid']   = req['shareid']
             self.result['uk']        = req['uk']
-            all_file = self.packData(req)
+
+            params = {**self.folder_params, 'jsToken':self.result['js_token'], 'shorturl':self.short_url, 'dir':'/', 'page':'1', 'num':'1000', 'by':'name', 'order':'asc', 'site_referer':'', 'root':'1'}
+            url_root = 'https://dm.terabox.com/share/list?' + '&'.join([f'{a}={b}' for a,b in params.items()])
+            root = self.r.get(url_root, headers=self.headers, cookies={'cookie':self.cookie}).json()
+            all_file = self.packData(root)
             if len(all_file):
                 self.result['list']   = all_file
                 self.result['status'] = 'success'

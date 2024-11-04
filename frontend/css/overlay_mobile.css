@@ -70,14 +70,14 @@
     width: 100%;
     max-width: 500px;
     position: absolute;
-    bottom: 65px;
+    bottom: 100px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
     overflow: hidden;
     box-sizing: border-box;
-    padding: 0px 21px;
+    padding: 0px 24px;
     gap: 5px;
 }
 
