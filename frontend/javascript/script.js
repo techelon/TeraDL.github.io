@@ -1,9 +1,11 @@
 // Global
 const api = 'http://127.0.0.1:5000'; // Change This
 // const api = 'https://teradl-api.dapuntaratya.com'; // Change This
+
 let buffer = '';
 let list_file;
 let params;
+let mode = 1;
 
 // Add Event Listener Input
 const inputForm = document.getElementById('terabox_url');
@@ -52,6 +54,21 @@ function sleep(s) {
     return new Promise(resolve => setTimeout(resolve, s*1000));
 }
 
+// Get App Config
+
+async function getConfig() {
+    const url = `${api}/get_config`;
+    const headers = {'Content-Type':'application/json'};
+    const data = {
+        'method'  : 'GET',
+        'mode'    : 'cors',
+        'headers' : headers
+    };
+    const req = await fetch(url, data);
+    const response = await req.json();
+    return(response.mode);
+}
+
 // Read Input
 async function readInput(raw_url) {
 
@@ -76,13 +93,15 @@ async function readInput(raw_url) {
 // Fetch URL
 async function fetchURL(url) {
 
+    mode = await getConfig();
+
     const get_file_url = `${api}/generate_file`;
-    const headers = {'Content-Type':'application/json', 'Access-Control-Allow-Origin':'*'};
+    const headers = {'Content-Type':'application/json'};
     const data = {
         'method'  : 'POST',
         'mode'    : 'cors',
         'headers' : headers,
-        'body'    : JSON.stringify({'url':url})
+        'body'    : JSON.stringify({'url':url, 'mode':mode})
     };
 
     const req = await fetch(get_file_url, data);
@@ -121,6 +140,7 @@ async function sortFile(list_file) {
 async function printItem(item) {
     const box_result = document.getElementById('result');
     const new_element = document.createElement('div');
+    new_element.id = `file-${item.fs_id}`;
     new_element.className = 'container-item';
     new_element.innerHTML = `
         <div id="image-${item.fs_id}" class="container-image"><img src="${item.image}" onclick="zoom(this)" crossOrigin="anonymous"></div>
@@ -138,10 +158,15 @@ async function printItem(item) {
     box_result.appendChild(new_element);
 
     const downloadButton = new_element.querySelector(`#get-download-${item.fs_id}`);
-    downloadButton.addEventListener('click', () => initDownload(item.fs_id));
+    downloadButton.addEventListener('click', () => {
+        if (mode == 1) initDownload(item.fs_id);
+        else if (mode == 2) initDownload(item.fs_id, item.link);
+    });
 
     const streamButton = new_element.querySelector(`#stream-${item.fs_id}`);
-    streamButton.addEventListener('click', () => initStream(item.fs_id));
+    streamButton.addEventListener('click', () => {
+        initStream(item.fs_id)
+    });
 }
 
 // Convert Bytes To MegaBytes
@@ -151,13 +176,16 @@ function convertToMB(bytes) {
 }
 
 // Initialization for download
-async function initDownload(fs_id) {
+async function initDownload(fs_id, dlink=null) {
 
     loading2(`get-download-${fs_id}`, true);
 
-    const param = {...params, 'fs_id':fs_id};
-    const get_file_url = `${api}/generate_link`;
-    const headers = {'Content-Type':'application/json', 'Access-Control-Allow-Origin':'*'};
+    let param;
+    if (dlink) {param = {'url':dlink, 'mode':mode};}
+    else {param = {...params, 'fs_id':fs_id, 'mode':mode};}
+
+    const get_link_url = `${api}/generate_link`;
+    const headers = {'Content-Type':'application/json'};
     const data = {
         'method'  : 'POST',
         'mode'    : 'cors',
@@ -165,7 +193,7 @@ async function initDownload(fs_id) {
         'body'    : JSON.stringify(param)
     };
 
-    const req = await fetch(get_file_url, data);
+    const req = await fetch(get_link_url, data);
     const response = await req.json();
 
     if (response.status == 'success') {
@@ -200,3 +228,11 @@ async function initStream(fs_id) {
     // console.log('Stream', fs_id);
     alert('Maaf, Fitur Streaming Belum Tersedia');
 }
+
+// Initialization
+
+async function main() {
+    mode = await getConfig();
+}
+
+main();

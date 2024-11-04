@@ -114,7 +114,7 @@ class TeraboxLink():
         
         self.r.close()
 
-    # Generate fast download link
+    #--> Generate fast download link
     def generateFastURL(self) -> None:
 
         r = requests.Session()
@@ -171,7 +171,7 @@ class Test():
         #--> Standard
         fs_id     = '116105044547298'
         uk        = '4399836712438'
-        shareid  = '30868891815'
+        shareid   = '30868891815'
 
         #--> Fatal
         timestamp = '1730453808'

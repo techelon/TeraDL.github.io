@@ -8,7 +8,8 @@ app = Flask(import_name=__name__)
 CORS(app=app)
 
 #--> Local module
-from python.terabox import TeraboxFile, TeraboxLink
+from python.terabox1 import TeraboxFile as TF1, TeraboxLink as TL1
+from python.terabox2 import TeraboxFile as TF2, TeraboxLink as TL2, TeraboxSession as TS
 
 #--> Main
 @app.route(rule='/')
@@ -31,45 +32,57 @@ def stream() -> Response:
         'message' : 'hayo mau ngapain?'}
     return Response(response=json.dumps(obj=response, sort_keys=False), mimetype='application/json')
 
+#--> Get Config App
+@app.route('/get_config', methods=['GET'])
+def getConfig() -> Response:
+    try:
+        data = json.loads(open('backend/json/config.json', 'r').read())
+        log = TS(data['cookie']).isLogin
+        result = {'status':'success', **data} if log else {'status':'failed', 'message':'cookie terabox nya invalid bos, coba lapor ke dapunta', 'mode':1, 'cookie':''}
+    except Exception as e:
+        result = {'status':'failed', 'message':'i dont know why error in config.json : {}'.format(str(e)), 'mode':1, 'cookie':''}
+    return Response(response=json.dumps(obj=result, sort_keys=False), mimetype='application/json')
+
 #--> Get file
 @app.route(rule='/generate_file', methods=['POST'])
 def getFile() -> Response:
-    
     try:
-
         data : dict = request.get_json()
         result = {'status':'failed', 'message':'invalid params'}
-
-        if data.get('url'):
-            TF = TeraboxFile()
+        mode = data.get('mode')
+        if data.get('url') and mode:
+            if mode == 1: TF = TF1()
+            elif mode == 2: TF = TF2()
             TF.search(data.get('url'))
             result = TF.result
-    
-    except: result = {'status':'failed', 'message':'wrong payload'}
-
+    except Exception as e: result = {'status':'failed', 'message':'i dont know why error in terabox app : {}'.format(str(e))}
     return Response(response=json.dumps(obj=result, sort_keys=False), mimetype='application/json')
 
 #--> Get link
 @app.route(rule='/generate_link', methods=['POST'])
 def getLink() -> Response:
-    
     try:
-
         data : dict = request.get_json()
         result = {'status':'failed', 'message':'invalid params'}
-
-        required_keys = {'fs_id', 'uk', 'shareid', 'timestamp', 'sign', 'js_token', 'cookie'}
-        if all(key in data for key in required_keys):
-            TL = TeraboxLink(**{key: data[key] for key in required_keys})
-            TL.generate()
-            result = TL.result
-    
+        mode = data.get('mode')
+        if mode == 1:
+            required_keys = {'fs_id', 'uk', 'shareid', 'timestamp', 'sign', 'js_token', 'cookie'}
+            if all(key in data for key in required_keys):
+                TL = TL1(**{key: data[key] for key in required_keys})
+                TL.generate()
+        elif mode == 2:
+            required_keys = {'url'}
+            if all(key in data for key in required_keys):
+                TL = TL2(**{key: data[key] for key in required_keys})
+            pass
+        else : result = {'status':'failed', 'message':'gaada mode nya'}
+        result = TL.result
     except: result = {'status':'failed', 'message':'wrong payload'}
-
     return Response(response=json.dumps(obj=result, sort_keys=False), mimetype='application/json')
 
 #--> Initialization
 if __name__ == '__main__':
     app.run(debug=True)
-    
+
 # https://1024terabox.com/s/1eBHBOzcEI-VpUGA_xIcGQg
+# https://dm.terabox.com/indonesian/sharing/link?surl=KKG3LQ7jaT733og97CBcGg
