@@ -58,6 +58,10 @@
 
 ### Apa Yang Baru Di Versi 1.4?
 - Fitur streaming video secara langsung
+- Support download berbagai format file
+  - Video : `.mp4`, `.mov`, `.m4v`, `.asf`, `.avi`, `.wmv`, `.m2ts`, `.3g2`
+  - Gambar : `.jpg`, `.jpeg`, `.png`, `.gif`, `.webp`, `.svg`
+  - Lainnya : `.pdf`, `.docx`, `.zip`, `.rar`, `.7z`
 
 ### Apa Yang Baru Di Versi 1.3?
 - Penambahan mode baru *(`get link` dengan `cookies` dari sisi server)* sehingga URL download lebih awet, meminimalisir error, dan proses download menjadi lebih cepat

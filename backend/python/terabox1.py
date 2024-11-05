@@ -61,11 +61,25 @@ class TeraboxFile():
             'path'   : item['path'],
             'fs_id'  : item['fs_id'],
             'name'   : item['server_filename'],
+            'type'   : self.checkFileType(item['server_filename']) if not bool(int(item.get('isdir'))) else 'other',
             'size'   : item.get('size') if not bool(int(item.get('isdir'))) else '',
-            'image'  : item.get('thumbs').get('url3') if not bool(int(item.get('isdir'))) else '',
+            'image'  : item.get('thumbs',{}).get('url3','') if not bool(int(item.get('isdir'))) else '',
             'list'   : self.getChildFile(short_url, item['path'], '0') if item.get('isdir') else [],
         } for item in req.get('list', [])]
         return(all_file)
+
+    # Check Format File
+    def checkFileType(self, name:str) -> str:
+        name = name.lower()
+        if any(ext in name for ext in ['.mp4', '.mov', '.m4v', '.asf', '.avi', '.wmv', '.m2ts', '.3g2']):
+            typefile = 'video'
+        elif any(ext in name for ext in ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg']):
+            typefile = 'image'
+        elif any(ext in name for ext in ['.pdf', '.docx', '.zip', '.rar', '.7z']):
+            typefile = 'file'
+        else:
+            typefile = 'other'
+        return(typefile)
 
 class TeraboxLink():
 
@@ -158,7 +172,9 @@ class Test():
 
     def file(self) -> None:
 
-        url = 'https://terasharelink.com/s/1sNYKPH7_tdDDIIQrOm5bqw' #-> Ganti aja
+        # url = 'https://1024terabox.com/s/1eBHBOzcEI-VpUGA_xIcGQg' #-> Test File Besar
+        # url = 'https://terasharelink.com/s/1QHHiN_C2wyDbckF_V3ssIw' #-> Test File All Format (Video, Gambar)
+        url = 'https://www.terabox.com/wap/share/filelist?surl=cmi8P-_NCAHAzxj7MtzZAw' #-> Test File (Zip)
 
         TF = TeraboxFile()
         TF.search(url)

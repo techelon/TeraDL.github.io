@@ -164,7 +164,7 @@ async function printItem(item) {
                     <div id="container-download-${item.fs_id}" class="container-download-button">
                         <button id="get-download-${item.fs_id}" type="button" class="download-button">Download ${convertToMB(item.size)} MB</button>
                     </div>
-                    <div class="container-stream-button">
+                    <div class="${item.type == 'video' ? 'container-stream-button-valid' : 'container-stream-button-invalid'}">
                         <button id="stream-${item.fs_id}" type="button" class="stream-button"><i class="fa-solid fa-play"></i></button>
                     </div>
                 </div>

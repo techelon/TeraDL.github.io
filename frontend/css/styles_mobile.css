@@ -152,7 +152,6 @@
 }
 
 .container-item.expand {
-    /* height: calc(100% - 176px); */
     width: 100%;
     height: auto;
 }
@@ -219,8 +218,12 @@
     gap: 5px;
 }
 
+.container-stream-button-invalid {
+    display: none;
+}
+
 .container-download-button,
-.container-stream-button {
+.container-stream-button-valid {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -234,7 +237,7 @@
     flex: 3;
 }
 
-.container-stream-button {
+.container-stream-button-valid {
     flex: 1;
 }
 
