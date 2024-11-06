@@ -1,41 +1,49 @@
-import re, requests, json, urllib
+import re, requests, json
 
 headers : dict[str, str] = {'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36'}
 
 #--> Check credential (valid or invalid)
 class TeraboxSession():
 
-    def __init__(self, cookie:str='') -> None:
+    def __init__(self) -> None:
 
         self.r = requests.Session()
         self.isLogin = False
-        self.cookie = cookie
         self.headers : dict[str,str] = headers
-        self.user_id = json.loads(open('backend/json/config.json', 'r').read())['user_id']
         self.params = {'app_id':'250528', 'web':'1', 'channel':'dubox', 'clienttype':'5', 'dp-logid':'', 'client':'web', 'pass_version':'2.8', 'lang':'id', 'need_relation':'0', 'need_secret_info':'1', 'clientfrom':'h5'}
 
-        try: self.generateAuth()
-        except: pass
+    def generateCookie(self) -> None:
+        url = 'https://raw.githubusercontent.com/Dapunta/TeraDL/refs/heads/main/backend/json/config.json'
+        try:
+            self.data = self.r.get(url, allow_redirects=False).json()
+            # self.data = json.loads(open('backend/json/config.json', 'r').read())
+            self.cookie = self.data.get('cookie','')
+            self.user_id = self.data.get('user_id','')
+        except:
+            self.cookie = ''
+            self.user_id = ''
 
     def generateAuth(self) -> None:
 
-        req = self.r.get('https://dm.terabox.com/indonesian/main?category=all', headers=self.headers, cookies={'cookie':self.cookie}, allow_redirects=True).text.replace('\\','')
-        self.params.update({
-            'jsToken':re.search(r'%28%22(.*?)%22%29',str(req)).group(1),
-            'pcftoken':re.search(r'"pcftoken":"(.*?)"',str(req)).group(1),
-            'user_list':f'["{self.user_id}"]',
-            'bdstoken':re.search(r'"bdstoken":"(.*?)"',str(req)).group(1)})
-        url = 'https://dm.terabox.com/api/user/getinfo?' + '&'.join([f'{a}={b}' for a,b in self.params.items()])
-        pos = self.r.get(url, headers=self.headers, cookies={'cookie':self.cookie}).json()
-        self.isLogin = True if len(pos.get('records', [])) != 0 else False
+        try:
+            req = self.r.get('https://dm.terabox.com/indonesian/main?category=all', headers=self.headers, cookies={'cookie':self.cookie}, allow_redirects=True).text.replace('\\','')
+            self.params.update({
+                'jsToken':re.search(r'%28%22(.*?)%22%29',str(req)).group(1),
+                'pcftoken':re.search(r'"pcftoken":"(.*?)"',str(req)).group(1),
+                'user_list':f'["{self.user_id}"]',
+                'bdstoken':re.search(r'"bdstoken":"(.*?)"',str(req)).group(1)})
+            url = 'https://dm.terabox.com/api/user/getinfo?' + '&'.join([f'{a}={b}' for a,b in self.params.items()])
+            pos = self.r.get(url, headers=self.headers, cookies={'cookie':self.cookie}).json()
+            self.isLogin = True if len(pos.get('records', [])) != 0 else False
+        except: self.isLogin = False
 
 class TeraboxFile():
 
     #--> Initialization (requests, headers, and result)
-    def __init__(self) -> None:
+    def __init__(self, cookie:str='') -> None:
 
         self.r : object = requests.Session()
-        self.cookie = json.loads(open('backend/json/config.json', 'r').read())['cookie']
+        self.cookie = cookie
         self.headers : dict[str,str] = headers
 
         self.folder_params = {'app_id':'250528', 'dp-logid':'', 'web':'1', 'channel':'dubox', 'clienttype':'0', 'root':'1', 'scene':''}
@@ -148,9 +156,9 @@ class Test():
         pass
     
     def session(self) -> None:
-        
-        cookie = json.loads(open('backend/json/config.json', 'r').read())['cookie']
-        TS = TeraboxSession(cookie)
+
+        TS = TeraboxSession()
+        TS.generateCookie()
         print(TS.isLogin)
 
     def file(self) -> None:

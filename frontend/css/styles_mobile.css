@@ -28,6 +28,31 @@
     cursor: pointer;
 }
 
+.container-status-mode {
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 25px;
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-status-mode span {
+    width: 60%;
+    height: 60%;
+    border: none;
+    border-radius: 1000px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .container-header {
     width: 100%;
     display: flex;

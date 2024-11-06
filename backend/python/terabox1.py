@@ -1,4 +1,4 @@
-import re, requests, urllib, math, random
+import re, requests, math, random
 
 headers : dict[str, str] = {'user-agent':'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36'}
 
@@ -49,8 +49,8 @@ class TeraboxFile():
     #--> Get child file data recursively (if any) and init packing file information
     def getChildFile(self, short_url, path:str='', root:str='0') -> list[dict[str, any]]:
 
-        params = urllib.parse.urlencode({'app_id':'250528', 'shorturl':short_url, 'root':root, 'dir':path})
-        url = 'https://www.terabox.com/share/list?' + params
+        params = {'app_id':'250528', 'shorturl':short_url, 'root':root, 'dir':path}
+        url = 'https://www.terabox.com/share/list?' + '&'.join([f'{a}={b}' for a,b in params.items()])
         req : object = self.r.get(url, headers=self.headers, cookies={'cookie':''}).json()
         return(self.packData(req, short_url))
 
@@ -114,8 +114,8 @@ class TeraboxLink():
     #--> Generate main download link
     def generate(self) -> None:
 
-        all_params : str = urllib.parse.urlencode({**self.dynamic_params, **self.static_param})
-        url : str = 'https://www.terabox.com/share/download?' + all_params
+        params : str = {**self.dynamic_params, **self.static_param}
+        url : str = 'https://www.terabox.com/share/download?' + '&'.join([f'{a}={b}' for a,b in params.items()])
         req : object = self.r.get(url, cookies={'cookie':self.cookie}).json()
 
         if not req['errno']:
@@ -209,3 +209,4 @@ if __name__ == '__main__':
 
 # [ Reference ]
 # https://terabox.hnn.workers.dev/
+# https://github.com/NamasteIndia/Terabox-Downloader-2023

@@ -62,6 +62,19 @@ function loading3(element_id, active) {
     }
 }
 
+// Loading Spinner 
+function loading4(element_id, active) {
+    const loadingBox = document.getElementById(element_id);
+    if (active)  {
+        loadingBox.innerHTML = `<div id="loading-spinner" class="spinner-container4"><div class="spinner4"></div></div>`;
+        loadingBox.style.pointerEvents = 'none';
+    }
+    else {
+        loadingBox.innerHTML = ``;
+        loadingBox.style.pointerEvents = 'auto';
+    }
+}
+
 // Time Sleep
 function sleep(s) {
     return new Promise(resolve => setTimeout(resolve, s*1000));
@@ -107,6 +120,7 @@ async function readInput(raw_url) {
 async function fetchURL(url) {
 
     mode = await getConfig();
+    changeStatus(mode);
 
     const get_file_url = `${api}/generate_file`;
     const headers = {'Content-Type':'application/json'};
@@ -294,3 +308,19 @@ async function getURLStream(fs_id, dlink=null) {
     }
     catch {return('');}
 }
+
+// Change status color
+function changeStatus(mode) {
+    const status_box = document.getElementById('status-mode');
+    status_box.style.backgroundColor = (mode == 2) ? '#77ff7e' : '#ff7777';
+}
+
+// Initialization
+async function main() {
+    loading4('status-mode', true);
+    const mode = await getConfig();
+    loading4('status-mode', false);
+    changeStatus(mode);
+}
+
+main();
