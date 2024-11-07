@@ -33,8 +33,8 @@ class TeraboxSession():
                 'user_list':f'["{self.user_id}"]',
                 'bdstoken':re.search(r'"bdstoken":"(.*?)"',str(req)).group(1)})
             url = 'https://dm.terabox.com/api/user/getinfo?' + '&'.join([f'{a}={b}' for a,b in self.params.items()])
-            pos = self.r.get(url, headers=self.headers, cookies={'cookie':self.cookie}).json()
-            self.isLogin = True if len(pos.get('records', [])) != 0 else False
+            self.pos = self.r.get(url, headers=self.headers, cookies={'cookie':self.cookie}).json()
+            self.isLogin = True if len(self.pos.get('records', [])) != 0 else False
         except: self.isLogin = False
 
 class TeraboxFile():
@@ -159,7 +159,9 @@ class Test():
 
         TS = TeraboxSession()
         TS.generateCookie()
+        TS.generateAuth()
         print(TS.isLogin)
+        print(TS.pos)
 
     def file(self) -> None:
 
