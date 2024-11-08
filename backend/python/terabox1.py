@@ -71,7 +71,7 @@ class TeraboxFile():
     # Check Format File
     def checkFileType(self, name:str) -> str:
         name = name.lower()
-        if any(ext in name for ext in ['.mp4', '.mov', '.m4v', '.asf', '.avi', '.wmv', '.m2ts', '.3g2']):
+        if any(ext in name for ext in ['.mp4', '.mov', '.m4v', '.mkv', '.asf', '.avi', '.wmv', '.m2ts', '.3g2']):
             typefile = 'video'
         elif any(ext in name for ext in ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg']):
             typefile = 'image'
