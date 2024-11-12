@@ -57,11 +57,6 @@ def getConfig() -> Response:
         config = {'status':'failed', 'message':'i dont know why error in config.json : {}'.format(str(e)), 'mode':1, 'cookie':''}
     return Response(response=json.dumps(obj=config, sort_keys=False), mimetype='application/json')
 
-@app.route('/test', methods=['GET'])
-def test() -> Response:
-    global result
-    return Response(response=json.dumps(obj=result, sort_keys=False), mimetype='application/json')
-
 #--> Get file
 @app.route(rule='/generate_file', methods=['POST'])
 def getFile() -> Response:

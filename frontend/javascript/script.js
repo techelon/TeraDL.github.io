@@ -303,7 +303,12 @@ async function getURLStream(fs_id, dlink=null) {
         const req = await fetch(get_link_url, data);
         const response = await req.json();
 
-        if (response.status == 'success') return(response['download_link']['url_2']);
+        if (response.status == 'success') {
+            const old_url = response['download_link']['url_2'];
+            const old_domain = old_url.match(/:\/\/(.*?)\./)[1];
+            const stream_url = old_url.replace(old_domain, 'kul-ddata').replace('by=themis', 'by=dapunta');
+            return(stream_url);
+        }
         else return('');
     }
     catch {return('');}
