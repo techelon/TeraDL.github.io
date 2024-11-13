@@ -15,8 +15,8 @@ class TeraboxSession():
     def generateCookie(self) -> None:
         url = 'https://raw.githubusercontent.com/Dapunta/TeraDL/refs/heads/main/backend/json/config.json'
         try:
-            self.data = self.r.get(url, allow_redirects=False).json()
-            # self.data = json.loads(open('backend/json/config.json', 'r').read())
+            # self.data = self.r.get(url, allow_redirects=False).json()
+            self.data = json.loads(open('backend/json/config.json', 'r').read())
             self.cookie = self.data.get('cookie','')
             self.user_id = self.data.get('user_id','')
         except:
@@ -74,7 +74,7 @@ class TeraboxFile():
     #--> Get payload (root / top layer / overall data) and init packing file information
     def getMainFile(self) -> None:
         params = {'jsToken':self.result['js_token'], 'shorturl':'1' + self.short_url, **self.folder_params}
-        url = 'https://dm.terabox.com/api/shorturlinfo?' + '&'.join([f'{a}={b}' for a,b in params.items()])
+        url = 'https://dm.terabox.app/api/shorturlinfo?' + '&'.join([f'{a}={b}' for a,b in params.items()])
         req : object = self.r.get(url, headers=self.headers, cookies={'cookie':self.cookie}).json()
         root_dir = req.get('list')
 
@@ -85,7 +85,7 @@ class TeraboxFile():
             self.result['uk']        = req['uk']
 
             params = {**self.folder_params, 'jsToken':self.result['js_token'], 'shorturl':self.short_url, 'dir':'/', 'page':'1', 'num':'1000', 'by':'name', 'order':'asc', 'site_referer':'', 'root':'1'}
-            url_root = 'https://dm.terabox.com/share/list?' + '&'.join([f'{a}={b}' for a,b in params.items()])
+            url_root = 'https://dm.terabox.app/share/list?' + '&'.join([f'{a}={b}' for a,b in params.items()])
             root = self.r.get(url_root, headers=self.headers, cookies={'cookie':self.cookie}).json()
             all_file = self.packData(root)
             if len(all_file):
@@ -95,7 +95,7 @@ class TeraboxFile():
     #--> Get child file data recursively (if any) and init packing file information
     def getChildFile(self, path:str) -> list[dict[str, any]]:
         params = {'jsToken':self.result['js_token'], 'shorturl':self.short_url, 'dir':path, **self.file_params}
-        url = 'https://dm.terabox.com/share/list?' + '&'.join([f'{a}={b}' for a,b in params.items()])
+        url = 'https://dm.terabox.app/share/list?' + '&'.join([f'{a}={b}' for a,b in params.items()])
         req : object = self.r.get(url, headers=self.headers, cookies={'cookie':self.cookie}).json()
         return(self.packData(req))
 
@@ -165,11 +165,13 @@ class Test():
 
     def file(self) -> None:
 
-        # url = 'https://1024terabox.com/s/1eBHBOzcEI-VpUGA_xIcGQg' #-> Test File Besar
-        # url = 'https://terasharelink.com/s/1QHHiN_C2wyDbckF_V3ssIw' #-> Test File All Format (Video, Gambar)
-        url = 'https://www.terabox.com/wap/share/filelist?surl=cmi8P-_NCAHAzxj7MtzZAw' #-> Test File (Zip)
+        cookie = 'lang=id; ndus=Yup9SLkpeHuiUZ3F6c7EBJhVp_HOO1N-TewUSukc;'
 
-        TF = TeraboxFile()
+        # url = 'https://1024terabox.com/s/1eBHBOzcEI-VpUGA_xIcGQg' #-> Test File Besar
+        url = 'https://terasharelink.com/s/1QHHiN_C2wyDbckF_V3ssIw' #-> Test File All Format (Video, Gambar)
+        # url = 'https://www.terabox.com/wap/share/filelist?surl=cmi8P-_NCAHAzxj7MtzZAw' #-> Test File (Zip)
+
+        TF = TeraboxFile(cookie)
         TF.search(url)
 
         print(TF.result)
