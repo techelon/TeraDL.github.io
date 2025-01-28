@@ -1,342 +1,411 @@
 /* Full Container */
-
-.full-container{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
+.full-container {
+  width: 100%;
+  min-height: 100vh; /* Ensure it takes the full viewport height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative; /* Use relative positioning */
+  padding-top: 60px; /* Add padding to account for the navbar height */
+  box-sizing: border-box;
 }
 
 /* Headers, Title, and Subtitle */
 
 .container-information-button {
-    position: absolute;
-    right: 3px;
-    top: 3px;
-    width: 25px;
-    aspect-ratio: 1/1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  width: 25px;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .container-information-button i {
-    font-size: 14px;
-    color: #6c79df;
-    cursor: pointer;
+  font-size: 14px;
+  color: #6c79df;
+  cursor: pointer;
 }
 
 .container-status-mode {
-    position: absolute;
-    left: 3px;
-    top: 3px;
-    width: 25px;
-    aspect-ratio: 1/1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 25px;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .container-status-mode span {
-    width: 60%;
-    height: 60%;
-    border: none;
-    border-radius: 1000px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 60%;
+  height: 60%;
+  border: none;
+  border-radius: 1000px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .container-header {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-sizing: border-box;
-    padding: 24px 0px 8px 0px;
-    overflow: hidden;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 24px 0px 8px 0px;
+  overflow: hidden;
 }
 
 .container-header span {
-    margin: 0;
-    overflow: hidden;
-    text-align: center;
-    box-sizing: border-box;
-    padding: 0px 30px;
+  margin: 0;
+  overflow: hidden;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 0px 30px;
 }
 
 .container-header .title {
-    font-size: 34px;
-    font-weight: 600;
-    line-height: 1;
-    color: #586afa;
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 1;
+  color: #586afa;
 }
 
 .container-header .subtitle {
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 1.2;
-    color: #212f99;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #212f99;
 }
 
-/* Input Form */
-
+/* Input Form Container */
 .container-input {
-    width: 100%;
-    max-width: 500px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-    padding: 10px 25px;
-    gap: 4px;
-    overflow: hidden;
+  width: 100%;
+  max-width: 500px; /* Limits the container width */
+  display: flex;
+  flex-direction: row; /* Keep input and button inline */
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 12px 20px; /* Add padding for a cleaner look */
+  gap: 8px; /* More space between input and button */
+  background-color: #1a1a2e; /* Subtle dark background for the input section */
+  border-radius: 12px; /* Smooth rounded corners for the entire container */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
-.container-input input,
-.container-input button {
-    height: 30px;
-    text-decoration: none;
-    outline: none;
-    border-radius: 6px;
-    box-sizing: border-box;
-}
-
+/* Input Box Styles */
 .container-input input {
-    flex: 1;
-    color: #6470ce;
-    border: solid 1px #6470ce;
-    padding: 0px 9px 0px 9px;
-    cursor: pointer;
+  flex: 1; /* Input takes all available space */
+  height: 45px; /* Increased height for better usability */
+  color: #e0e0e0; /* Light text for dark background */
+  background-color: #282c34; /* Darker input background */
+  border: 2px solid transparent; /* Border hidden by default */
+  border-radius: 8px; /* Smooth rounded corners */
+  padding: 0 15px; /* More padding for better typing experience */
+  font-size: 16px; /* Comfortable font size */
+  outline: none; /* Removes default outline */
+  transition: all 0.3s ease; /* Smooth hover and focus effects */
 }
 
+/* Input Placeholder */
 .container-input input::placeholder {
-    color: #6470cea4;
+  color: #888fa5; /* Subtle gray placeholder text */
+  font-style: italic; /* Adds a stylish placeholder */
 }
 
+/* Input Hover and Focus */
+.container-input input:hover {
+  background-color: #313846; /* Slightly lighter background on hover */
+}
+
+.container-input input:focus {
+  border-color: #5a67d8; /* Indigo border on focus */
+  box-shadow: 0 0 8px rgba(90, 103, 216, 0.4); /* Subtle glow effect */
+  background-color: #2e3442; /* Slightly different focus background */
+}
+
+/* Button Styles */
 .container-input button {
-    background-color: #8291ff;
-    color: white;
-    width: 40px;
-    font-size: 16px;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+  height: 45px; /* Matches input height */
+  background-color: #5a67d8; /* Vibrant indigo button background */
+  color: #ffffff; /* White text for contrast */
+  padding: 0 20px; /* Horizontal padding for larger click area */
+  font-size: 16px; /* Consistent font size */
+  font-weight: 600; /* Bold text for emphasis */
+  border: none; /* Remove default border */
+  border-radius: 8px; /* Rounded corners for uniformity */
+  cursor: pointer; /* Pointer cursor for interactivity */
+  transition: all 0.3s ease; /* Smooth hover and active effects */
+  box-shadow: 0 4px 6px rgba(90, 103, 216, 0.3); /* Subtle shadow for depth */
 }
 
-/* Result */
+/* Button Hover and Active */
+.container-input button:hover {
+  background-color: #4c51bf; /* Slightly darker indigo on hover */
+  box-shadow: 0 6px 10px rgba(90, 103, 216, 0.5); /* Enhanced shadow on hover */
+}
+
+.container-input button:active {
+  background-color: #3e44a8; /* Darker indigo on active state */
+  transform: scale(0.97); /* Slight shrink for feedback */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .container-input {
+    flex-direction: column; /* Stack input and button vertically on small screens */
+    gap: 12px; /* Increase spacing in vertical layout */
+  }
+
+  .container-input button {
+    width: 100%; /* Full width for button in vertical layout */
+  }
+}
+
+/* Enhanced Result with Gradient Background and Modern Buttons */
 
 .container-result {
-    width: 100%;
-    height: calc(100vh - 200px);
-    box-sizing: border-box;
-    padding: 0px 15px 0px 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 100%;
+  height: calc(100vh - 200px);
+  box-sizing: border-box;
+  padding: 0px 15px 0px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
 }
 
 .box-result {
-    height: 100%;
-    width: 100%;
-    max-width: 500px;
-    box-sizing: border-box;
-    padding: 10px 10px 0 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    overflow-y: auto;
-    max-height: 500px;
-    position: relative;
+  height: 100%;
+  width: 100%;
+  max-width: 500px;
+  box-sizing: border-box;
+  padding: 10px 10px 0 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  overflow-y: auto;
+  max-height: 500px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
 }
 
 .container-item {
-    background-color: #ffffff;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
-    border: none;
-    border-radius: 8px;
-    height: 90px;
-    width: 100%;
-    max-width: 449px;
-    min-width: 209px;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    flex-shrink: 0;
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 12px;
+  height: 90px;
+  width: 100%;
+  max-width: 449px;
+  min-width: 209px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.container-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .container-item.expand {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 .container-item-default {
-    height: 90px;
-    width: 100%;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    overflow: hidden;
+  height: 90px;
+  width: 100%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  overflow: hidden;
 }
 
 .container-image {
-    height: 100%;
-    aspect-ratio: 4/3;
-    flex: 0 1 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-    padding: 5px;
+  height: 100%;
+  aspect-ratio: 4/3;
+  flex: 0 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 10px;
 }
 
 .container-image img {
-    width: 100%;
-    height: 100%;
-    border: none;
-    border-radius: 6px;
-    object-fit: cover;
-    object-position: center;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 8px;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+.container-image img:hover {
+  transform: scale(1.05);
 }
 
 .container-info {
-    height: 100%;
-    width: 100%;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    padding: 6px 15px 4px 2px;
-    position: relative;
+  height: 100%;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 10px 15px 10px 10px;
+  position: relative;
 }
 
 .container-info .title {
-    color: #6c79df;
-    line-height: 1.15;
-    font-size: 16px;
-    font-weight: 500;
-    max-height: 38px;
-    overflow: hidden;
-    word-break: break-all;
-    overflow-wrap: break-word;
+  color: #e0e7ff;
+  line-height: 1.15;
+  font-size: 16px;
+  font-weight: 600;
+  max-height: 38px;
+  overflow: hidden;
+  word-break: break-all;
+  overflow-wrap: break-word;
+  margin-bottom: 5px;
 }
 
 .container-button {
-    width: 90%;
-    height: 30px;
-    position: absolute;
-    bottom: 6px;
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
+  width: 90%;
+  height: 30px;
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }
 
 .container-stream-button-invalid {
-    display: none;
+  display: none;
 }
 
 .container-download-button,
 .container-stream-button-valid {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 4px;
-    overflow: hidden;
-    box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .container-download-button {
-    flex: 3;
+  flex: 3;
 }
 
 .container-stream-button-valid {
-    flex: 1;
+  flex: 1;
 }
 
 .download-button,
 .stream-button {
-    border: none;
-    outline: none;
-    height: 80%;
-    border: none;
-    border-radius: 4px;
-    overflow: hidden;
-    box-sizing: border-box;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  border: none;
+  outline: none;
+  height: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 8px 12px;
+  color: #e0e7ff;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.download-button:hover,
+.stream-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
 }
 
 .download-button {
-    width: 100%;
-    font-size: 12px;
-    padding-bottom: 1.5px;
-    color: #7a88f7;
-    background-color: white;
-    border: solid 1px #a2adff;
+  background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+  border: none;
+}
+
+.download-button:hover {
+  background: linear-gradient(135deg, #6d28d9 0%, #4338ca 100%);
 }
 
 .stream-button {
-    width: 100%;
-    font-size: 10px;
-    padding-top: 2px;
-    color: white;
-    background-color: #a2adff;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border: none;
+}
+
+.stream-button:hover {
+  background: linear-gradient(135deg, #0d9466 0%, #047857 100%);
 }
 
 .container-item-expand.false {
-    opacity: 0;
+  opacity: 0;
 }
 
 .container-item-expand {
-    width: 100%;
-    aspect-ratio: 16/9;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    opacity: 1;
-    transition: all 0.5s ease;
-    margin-top: -5px;
+  width: 100%;
+  aspect-ratio: 16/9;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  opacity: 1;
+  transition: all 0.5s ease;
+  margin-top: -5px;
 }
 
 .container-item-expand video {
-    position: absolute;
-    height: calc(100% - 10px);
-    width: calc(100% - 10px);
-    object-fit: contain;
-    border: none;
-    border-radius: 6px;
+  position: absolute;
+  height: calc(100% - 10px);
+  width: calc(100% - 10px);
+  object-fit: contain;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
 /* Failed Result */
 
 .container-failed {
-    width: 100%;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .container-failed span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
