@@ -3,11 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TeraDL - Terabox Video Downloader</title>
+    <meta
+      name="description"
+      content="TeraDown - Premium TeraBox Video & File Downloader with advanced features and lightning-fast speeds"
+    />
+    <meta
+      name="keywords"
+      content="TeraBox downloader, premium downloader, fast TeraBox download, HD video download"
+    />
+    <meta name="author" content="TeraDown" />
+    <title>TeraDown Pro - Premium TeraBox Video & File Downloader</title>
 
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+
+    <!-- Font Awesome Pro -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <!-- CDN Style -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" />
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
 
     <!-- Local Style -->
     <link rel="icon" href="assets/icon.png" type="image/png" />
@@ -17,13 +50,215 @@
     <link rel="stylesheet" href="frontend/css/zoom_mobile.css" />
 
     <!-- Caching -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <meta name="description" content="Terabox Video Downloader & Streaming" />
   </head>
+  <style>
+    * {
+      font-family: "Inter", sans-serif;
+    }
 
+    .gradient-bg {
+      background: linear-gradient(
+        135deg,
+        #0f172a 0%,
+        #1e1b4b 50%,
+        #312e81 100%
+      );
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gradient-bg::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(
+        circle at 50% 50%,
+        rgba(99, 102, 241, 0.15) 0%,
+        transparent 50%
+      );
+      animation: pulse 8s ease-in-out infinite;
+    }
+
+    .glass-morphism {
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    }
+
+    .search-container {
+      backdrop-filter: blur(16px);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    }
+
+    .feature-card {
+      background: rgba(17, 24, 39, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      border-color: rgba(99, 102, 241, 0.5);
+    }
+
+    .floating {
+      animation: floating 3s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    @keyframes pulse {
+      0%,
+      100% {
+        opacity: 0.5;
+      }
+      50% {
+        opacity: 1;
+      }
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #1f2937;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #4f46e5;
+      border-radius: 4px;
+    }
+
+    /* Modern Button Styles */
+    .download-btn {
+      background: linear-gradient(45deg, #4f46e5, #6366f1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .download-btn::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+      );
+      transform: rotate(45deg);
+      transition: 0.5s;
+    }
+
+    .download-btn:hover::after {
+      left: 100%;
+    }
+
+    /* Modern Input Styles */
+    .modern-input {
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .modern-input:focus {
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
+    }
+
+    /* Stats Counter Animation */
+    .stat-counter {
+      transition: all 0.3s ease;
+    }
+
+    /* Reveal Animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
   <body>
+
+      <!-- Navigation -->
+      <nav class="fixed w-full z-50 glass-morphism">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between h-16">
+            <a
+              href="/"
+              class="flex items-center space-x-2 text-2xl font-bold bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent"
+            >
+              <i class="fas fa-bolt text-indigo-500"></i>
+              <span>TeraDown Pro</span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+              <a
+                href="#how-it-works"
+                class="text-gray-300 hover:text-indigo-500 transition-colors duration-300"
+                >How It Works</a
+              >
+              <a
+                href="#features"
+                class="text-gray-300 hover:text-indigo-500 transition-colors duration-300"
+                >Features</a
+              >
+              <a
+                href="#faq"
+                class="text-gray-300 hover:text-indigo-500 transition-colors duration-300"
+                >FAQ</a
+              >
+              <a
+                href="#pricing"
+                class="text-gray-300 hover:text-indigo-500 transition-colors duration-300"
+                >Pricing</a
+              >
+            </div>
+            <div class="hidden md:block">
+              <button
+                class="px-6 py-2 rounded-full bg-indigo-600 hover:bg-indigo-700 transition-all duration-300 shadow-lg hover:shadow-indigo-500/50"
+              >
+                Get Started
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+  
     <!-- Idle Main -->
     <div class="full-container poppins">
       <span class="container-information-button">
@@ -35,13 +270,13 @@
       </span>
 
       <div class="container-header">
-        <span class="title">TeraDL</span>
-        <span class="subtitle">Terabox Video Downloader & Streaming</span>
+        <span class="title"></span>
+        <span class="subtitle"></span>
         <div class="time-display">
-          <span id="current-time">2025-01-25 09:07:08</span>
+          <span id="current-time"></span>
         </div>
         <div class="user-display">
-          <span id="user-login">User: Anytu9878978798</span>
+          <span id="user-login"></span>
         </div>
       </div>
 
@@ -49,7 +284,7 @@
         <input
           id="terabox_url"
           type="text"
-          placeholder="Masukkan URL Terabox"
+          placeholder="enter terabox URL"
           autocomplete="off"
           autocapitalize="off"
           autofocus="off"
@@ -67,7 +302,294 @@
     </div>
 
     <!-- Overlay Zoom Image -->
-    <div id="zoom-container" class="container-zoom-inactive poppins" onclick="unzoom();"></div>
+    <div
+      id="zoom-container"
+      class="container-zoom-inactive poppins"
+      onclick="unzoom();"
+    ></div>
+
+
+
+
+ <!-- What is Threads Section -->
+ <section class="py-20 threads-gradient relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- What is Threads -->
+    <div class="threads-card rounded-2xl p-8 mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-white">Disclaimer</h2>
+      <p class="text-gray-400 mb-4">
+        
+This website is not an official Terabox website and we are not associated with terabox.app or Flextech Inc. TeraDownloader.com is just a tool for generating direct download links of terabox file links. We do not host, upload or store any user files on our servers. We do not promote or engage in any illegal activities. We respect the rights of copyright holders. If you are the owner of Terabox and feel this site oversteps bounds, please contact us via our email provided in the Contact page. We will address any concerns related to our tool.
+      </p>
+      
+    </div>   </div></section> 
+
+
+     <!-- Footer Section -->
+     <footer class="bg-gradient-to-b from-black to-indigo-950/30 pt-20 pb-10">
+      <!-- Footer Top Section - Newsletter -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="glass-morphism rounded-2xl p-8 mb-16 relative overflow-hidden"
+        >
+          <!-- Background Animation -->
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 animate-pulse"
+          ></div>
+
+<div class="relative grid gap-8 items-center p-4 sm:p-8">
+  <div>
+    <h3 class="text-2xl font-bold bg-gradient-to-r from-white to-indigo-200 bg-clip-text text-transparent mb-4">
+      Stay Updated with TeraDown
+    </h3>
+    <p class="text-gray-400">
+      Get the latest updates, new features, and special offers directly to your inbox
+    </p>
+  </div>
+  <div>
+    <form class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-2">
+      <input
+        type="email"
+        placeholder="Enter your email"
+        class="flex-1 px-4 py-3 rounded-xl bg-white/5 border border-gray-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all duration-300 text-white"
+      />
+      <button
+        class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2"
+      >
+        <span>Subscribe</span>
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </form>
+  </div>
+</div></div>
+
+
+        <!-- Main Footer Content -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16"
+        >
+          <!-- Company Info -->
+          <div class="space-y-6">
+            <div>
+              <a href="/" class="flex items-center space-x-2">
+                <i
+                  class="fas fa-cloud-download-alt text-3xl text-indigo-500"
+                ></i>
+                <span
+                  class="text-2xl font-bold bg-gradient-to-r from-white to-indigo-200 bg-clip-text text-transparent"
+                >
+                  TeraDown
+                </span>
+              </a>
+            </div>
+            <p class="text-gray-400 leading-relaxed">
+              Professional TeraBox downloader service with over 5 million
+              satisfied users worldwide.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-indigo-500/20 transition-all duration-300"
+              >
+                <i class="fab fa-twitter text-gray-400 hover:text-white"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-indigo-500/20 transition-all duration-300"
+              >
+                <i class="fab fa-discord text-gray-400 hover:text-white"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-indigo-500/20 transition-all duration-300"
+              >
+                <i class="fab fa-telegram text-gray-400 hover:text-white"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-indigo-500/20 transition-all duration-300"
+              >
+                <i class="fab fa-github text-gray-400 hover:text-white"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <h4 class="text-lg font-semibold text-white mb-6">Quick Links</h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-indigo-400 transition-colors duration-300 flex items-center space-x-2"
+                >
+                  <i class="fas fa-chevron-right text-xs"></i>
+                  <span>Home</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-indigo-400 transition-colors duration-300 flex items-center space-x-2"
+                >
+                  <i class="fas fa-chevron-right text-xs"></i>
+                  <span>How it Works</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-indigo-400 transition-colors duration-300 flex items-center space-x-2"
+                >
+                  <i class="fas fa-chevron-right text-xs"></i>
+                  <span>Pricing</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-indigo-400 transition-colors duration-300 flex items-center space-x-2"
+                >
+                  <i class="fas fa-chevron-right text-xs"></i>
+                  <span>FAQ</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-indigo-400 transition-colors duration-300 flex items-center space-x-2"
+                >
+                  <i class="fas fa-chevron-right text-xs"></i>
+                  <span>Blog</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Other Tools -->
+          <div>
+            <h4 class="text-lg font-semibold text-white mb-6">Other Tools</h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-indigo-400 transition-colors duration-300 flex items-center space-x-2"
+                >
+                  <i class="fab fa-spotify text-xs"></i>
+                  <span>Spotify Downloader</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-indigo-400 transition-colors duration-300 flex items-center space-x-2"
+                >
+                  <i class="fas fa-image text-xs"></i>
+                  <span>Pinterest Downloader</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-indigo-400 transition-colors duration-300 flex items-center space-x-2"
+                >
+                  <i class="fab fa-instagram text-xs"></i>
+                  <span>Instagram Downloader</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-indigo-400 transition-colors duration-300 flex items-center space-x-2"
+                >
+                  <i class="fas fa-laugh text-xs"></i>
+                  <span>iFunny Downloader</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact Info -->
+          <div>
+            <h4 class="text-lg font-semibold text-white mb-6">Contact Us</h4>
+            <ul class="space-y-4">
+              <li class="flex items-start space-x-3">
+                <i class="fas fa-envelope mt-1 text-indigo-400"></i>
+                <span class="text-gray-400">support@teradown.com</span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <i class="fas fa-clock mt-1 text-indigo-400"></i>
+                <span class="text-gray-400">24/7 Support</span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <i class="fas fa-map-marker-alt mt-1 text-indigo-400"></i>
+                <span class="text-gray-400">Global Service</span>
+              </li>
+              <li>
+                <div class="flex items-center space-x-2 mt-4">
+                  <span
+                    class="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-sm"
+                  >
+                    <i class="fas fa-check-circle mr-1"></i>
+                    System Online
+                  </span>
+                  <span
+                    class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-sm"
+                  >
+                    <i class="fas fa-server mr-1"></i>
+                    Servers Active
+                  </span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="pt-8 border-t border-gray-800">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Copyright -->
+            <div class="text-gray-400 text-sm">
+              <p>© 2025 TeraDown. All rights reserved.</p>
+              <p class="mt-1">
+                Current Time (UTC):
+                <span class="text-indigo-400">2025-01-25 03:10:17</span>
+              </p>
+            </div>
+
+            <!-- Legal Links -->
+            <div class="flex flex-wrap gap-4 md:justify-end text-sm">
+              <a
+                href="#"
+                class="text-gray-400 hover:text-indigo-400 transition-colors duration-300"
+                >Terms & Conditions</a
+              >
+              <a
+                href="#"
+                class="text-gray-400 hover:text-indigo-400 transition-colors duration-300"
+                >Privacy Policy</a
+              >
+              <a
+                href="#"
+                class="text-gray-400 hover:text-indigo-400 transition-colors duration-300"
+                >DMCA</a
+              >
+              <a
+                href="#"
+                class="text-gray-400 hover:text-indigo-400 transition-colors duration-300"
+                >Contact</a
+              >
+            </div>
+          </div>
+
+          <!-- Disclaimer -->
+          <div class="mt-6 text-xs text-gray-500 text-center">
+            This website is not an official TeraBox website and we are not
+            associated with terabox.app or Flextech Inc.
+          </div>
+        </div>
+      </div>
+
 
     <script src="frontend/javascript/style.js"></script>
     <script src="frontend/javascript/script.js"></script>
@@ -76,69 +598,75 @@
     <script>
       // Function to get URL parameter
       function getUrlParameter(name) {
-          const urlParams = new URLSearchParams(window.location.search);
-          return urlParams.get(name);
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
       }
 
       // Function to update time
       function updateTime() {
-          const timeDisplay = document.getElementById('current-time');
-          const now = new Date();
-          const formatted = now.getUTCFullYear() + '-' + 
-                          String(now.getUTCMonth() + 1).padStart(2, '0') + '-' +
-                          String(now.getUTCDate()).padStart(2, '0') + ' ' +
-                          String(now.getUTCHours()).padStart(2, '0') + ':' +
-                          String(now.getUTCMinutes()).padStart(2, '0') + ':' +
-                          String(now.getUTCSeconds()).padStart(2, '0');
-          timeDisplay.textContent = formatted;
+        const timeDisplay = document.getElementById("current-time");
+        const now = new Date();
+        const formatted =
+          now.getUTCFullYear() +
+          "-" +
+          String(now.getUTCMonth() + 1).padStart(2, "0") +
+          "-" +
+          String(now.getUTCDate()).padStart(2, "0") +
+          " " +
+          String(now.getUTCHours()).padStart(2, "0") +
+          ":" +
+          String(now.getUTCMinutes()).padStart(2, "0") +
+          ":" +
+          String(now.getUTCSeconds()).padStart(2, "0");
+        timeDisplay.textContent = formatted;
       }
 
       // Auto process URL when page loads
-      document.addEventListener('DOMContentLoaded', function() {
-          // Start time updates
-          updateTime();
-          setInterval(updateTime, 1000);
+      document.addEventListener("DOMContentLoaded", function () {
+        
 
-          // Get URL from parameters
-          const urlParam = getUrlParameter('url');
-          if (urlParam) {
-              // Set the URL in the input field
-              const urlInput = document.getElementById('terabox_url');
-              urlInput.value = urlParam;
+        // Get URL from parameters
+        const urlParam = getUrlParameter("url");
+        if (urlParam) {
+          // Set the URL in the input field
+          const urlInput = document.getElementById("terabox_url");
+          urlInput.value = urlParam;
 
-              // Automatically trigger the submit button
-              document.getElementById('submit_button').click();
-          }
+          // Automatically trigger the submit button
+          document.getElementById("submit_button").click();
+        }
       });
 
       // Add click handler for submit button if not already present in script.js
-      document.getElementById('submit_button').addEventListener('click', function() {
-          const url = document.getElementById('terabox_url').value.trim();
+      document
+        .getElementById("submit_button")
+        .addEventListener("click", function () {
+          const url = document.getElementById("terabox_url").value.trim();
           if (url) {
-              // Show processing status
-              const statusMode = document.getElementById('status-mode');
-              statusMode.textContent = 'Processing...';
-              statusMode.style.display = 'block';
+            // Show processing status
+            const statusMode = document.getElementById("status-mode");
+            statusMode.textContent = "Processing...";
+            statusMode.style.display = "block";
 
-              // Process the URL using your existing processing logic
-              // This should integrate with your existing functionality in script.js
-              processTeraboxUrl(url);
+            // Process the URL using your existing processing logic
+            // This should integrate with your existing functionality in script.js
+            processTeraboxUrl(url);
           }
-      });
+        });
 
       // This function should be defined in your script.js, but if not, here's a placeholder
       function processTeraboxUrl(url) {
-          // Your existing URL processing logic goes here
-          // Update the result div with the processed content
-          const resultDiv = document.getElementById('result');
-          
-          // Example processing - replace with your actual implementation
-          resultDiv.innerHTML = `<div class="processing-result">
-              <h3>Processing URL:</h3>
-              <p>${url}</p>
+        // Your existing URL processing logic goes here
+        // Update the result div with the processed content
+        const resultDiv = document.getElementById("result");
+
+        // Example processing - replace with your actual implementation
+        resultDiv.innerHTML = `<div class="processing-result">
+              <h3 style="color:white;">Processing URL:</h3>
+              <p style="color:white;">${url}</p>
               <div class="processing-status">
-                  <i class="fa-solid fa-spinner fa-spin"></i>
-                  <span>Processing your request...</span>
+                  <i style="color:white;" class="fa-solid fa-spinner fa-spin"></i>
+                  <span style="color:white;" >just a moment...</span>
               </div>
           </div>`;
       }
