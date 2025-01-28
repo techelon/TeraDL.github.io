@@ -1,8 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta
       name="description"
       content="TeraDown - Premium TeraBox Video & File Downloader with advanced features and lightning-fast speeds"
@@ -25,240 +27,305 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <!-- CDN Style -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    />
-
-    <!-- Local Style -->
+  <!-- Local Style -->
     <link rel="icon" href="assets/icon.png" type="image/png" />
     <link rel="stylesheet" href="frontend/css/styles_global.css" />
     <link rel="stylesheet" href="frontend/css/styles_mobile.css" />
     <link rel="stylesheet" href="frontend/css/overlay_mobile.css" />
     <link rel="stylesheet" href="frontend/css/zoom_mobile.css" />
 
-    <!-- Caching -->
-    <meta
-      http-equiv="Cache-Control"
-      content="no-cache, no-store, must-revalidate"
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
     />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    <meta name="description" content="Terabox Video Downloader & Streaming" />
-  </head>
-  <style>
-    * {
-      font-family: "Inter", sans-serif;
-    }
 
-    .gradient-bg {
-      background: linear-gradient(
-        135deg,
-        #0f172a 0%,
-        #1e1b4b 50%,
-        #312e81 100%
-      );
-      position: relative;
-      overflow: hidden;
-    }
+    <!-- Custom CSS -->
+    <style>
 
-    .gradient-bg::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(
-        circle at 50% 50%,
-        rgba(99, 102, 241, 0.15) 0%,
-        transparent 50%
-      );
-      animation: pulse 8s ease-in-out infinite;
-    }
-
-    .glass-morphism {
-      backdrop-filter: blur(10px);
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    }
-
-    .search-container {
-      backdrop-filter: blur(16px);
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    }
-
-    .feature-card {
-      background: rgba(17, 24, 39, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-      border-color: rgba(99, 102, 241, 0.5);
-    }
-
-    .floating {
-      animation: floating 3s ease-in-out infinite;
-    }
-
-    @keyframes floating {
-      0% {
-        transform: translateY(0px);
+      * {
+        font-family: "Inter", sans-serif;
       }
-      50% {
-        transform: translateY(-20px);
-      }
-      100% {
-        transform: translateY(0px);
-      }
-    }
 
-    @keyframes pulse {
-      0%,
-      100% {
-        opacity: 0.5;
+      .gradient-bg {
+        background: linear-gradient(
+          135deg,
+          #0f172a 0%,
+          #1e1b4b 50%,
+          #312e81 100%
+        );
+        position: relative;
+        overflow: hidden;
       }
-      50% {
+
+      .gradient-bg::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          circle at 50% 50%,
+          rgba(99, 102, 241, 0.15) 0%,
+          transparent 50%
+        );
+        animation: pulse 8s ease-in-out infinite;
+      }
+
+      .glass-morphism {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      }
+
+      .search-container {
+        backdrop-filter: blur(16px);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      }
+
+      .feature-card {
+        background: rgba(17, 24, 39, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        border-color: rgba(99, 102, 241, 0.5);
+      }
+
+      .floating {
+        animation: floating 3s ease-in-out infinite;
+      }
+
+      @keyframes floating {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #1f2937;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #4f46e5;
+        border-radius: 4px;
+      }
+
+      /* Modern Button Styles */
+      .download-btn {
+        background: linear-gradient(45deg, #4f46e5, #6366f1);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .download-btn::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        transform: rotate(45deg);
+        transition: 0.5s;
+      }
+
+      .download-btn:hover::after {
+        left: 100%;
+      }
+
+      /* Modern Input Styles */
+      .modern-input {
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .modern-input:focus {
+        border-color: #4f46e5;
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
+      }
+
+      /* Stats Counter Animation */
+      .stat-counter {
+        transition: all 0.3s ease;
+      }
+
+      /* Reveal Animation */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease;
+      }
+
+      .reveal.active {
         opacity: 1;
+        transform: translateY(0);
       }
-    }
+    </style>
+  </head>
 
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: #1f2937;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: #4f46e5;
-      border-radius: 4px;
-    }
-
-    /* Modern Button Styles */
-    .download-btn {
-      background: linear-gradient(45deg, #4f46e5, #6366f1);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .download-btn::after {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(
-        45deg,
-        transparent,
-        rgba(255, 255, 255, 0.1),
-        transparent
-      );
-      transform: rotate(45deg);
-      transition: 0.5s;
-    }
-
-    .download-btn:hover::after {
-      left: 100%;
-    }
-
-    /* Modern Input Styles */
-    .modern-input {
-      background: rgba(255, 255, 255, 0.05);
-      border: 2px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
-    }
-
-    .modern-input:focus {
-      border-color: #4f46e5;
-      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
-    }
-
-    /* Stats Counter Animation */
-    .stat-counter {
-      transition: all 0.3s ease;
-    }
-
-    /* Reveal Animation */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease;
-    }
-
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
-  <body>
-
-      <!-- Navigation -->
-      <nav class="fixed w-full z-50 glass-morphism">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex items-center justify-between h-16">
-            <a
-              href="/"
-              class="flex items-center space-x-2 text-2xl font-bold bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent"
-            >
-              <i class="fas fa-bolt text-indigo-500"></i>
-              <span>TeraDown Pro</span>
-            </a>
-            <div class="hidden md:flex space-x-8">
-              <a
-                href="#how-it-works"
-                class="text-gray-300 hover:text-indigo-500 transition-colors duration-300"
-                >How It Works</a
-              >
-              <a
-                href="#features"
-                class="text-gray-300 hover:text-indigo-500 transition-colors duration-300"
-                >Features</a
-              >
-              <a
-                href="#faq"
-                class="text-gray-300 hover:text-indigo-500 transition-colors duration-300"
-                >FAQ</a
-              >
-              <a
-                href="#pricing"
-                class="text-gray-300 hover:text-indigo-500 transition-colors duration-300"
-                >Pricing</a
-              >
-            </div>
-            <div class="hidden md:block">
-              <button
-                class="px-6 py-2 rounded-full bg-indigo-600 hover:bg-indigo-700 transition-all duration-300 shadow-lg hover:shadow-indigo-500/50"
-              >
-                Get Started
-              </button>
-            </div>
-          </div>
+  <body class="bg-gray-900 text-white">
+    <!-- Navigation -->
+ <nav class="fixed w-full z-50 glass-morphism">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a
+        href="/"
+        class="flex items-center space-x-2 text-2xl font-bold bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent"
+      >
+        <i class="fas fa-bolt text-indigo-500"></i>
+        <span>TeraDown Pro</span>
+      </a>
+      <div class="hidden md:flex space-x-8">
+        <a
+          href="index.html"
+          class="text-gray-300 hover:text-indigo-500 transition-colors duration-300"
+          >Home</a
+        >
+        <a
+          href="about.html"
+          class="text-gray-300 hover:text-indigo-500 transition-colors duration-300"
+          >About</a
+        >
+        <a
+          href="contact.html"
+          class="text-gray-300 hover:text-indigo-500 transition-colors duration-300"
+          >Contact US</a
+        >
+        <a
+          href="dmca.html"
+          class="text-gray-300 hover:text-indigo-500 transition-colors duration-300"
+          >DMCA</a
+        >
+      </div>
+      <div class="flex items-center space-x-4">
+        <div class="hidden md:block">
+          <button
+            class="px-6 py-2 rounded-full bg-indigo-600 hover:bg-indigo-700 transition-all duration-300 shadow-lg hover:shadow-indigo-500/50"
+          >
+            Get Started
+          </button>
         </div>
-      </nav>
-  
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu (Moved outside nav) -->
+<div id="mobile-menu" class="hidden fixed inset-0 z-[100] bg-gray-900/95 backdrop-blur-sm md:hidden">
+  <div class="flex flex-col min-h-screen">
+    <div class="flex justify-end p-4">
+      <button id="close-mobile-menu" class="text-gray-400 hover:text-white">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    <div class="flex flex-col items-center justify-center flex-grow space-y-8 p-8">
+      <a href="index.html" class="text-gray-300 hover:text-indigo-500 transition-colors duration-300 text-lg">Home</a>
+      <a href="about.html" class="text-gray-300 hover:text-indigo-500 transition-colors duration-300 text-lg">About</a>
+      <a href="contact.html" class="text-gray-300 hover:text-indigo-500 transition-colors duration-300 text-lg">Contact US</a>
+      <a href="dmca" class="text-gray-300 hover:text-indigo-500 transition-colors duration-300 text-lg">DMCA</a>
+      <button class="px-6 py-2 rounded-full bg-indigo-600 hover:bg-indigo-700 transition-all duration-300 shadow-lg hover:shadow-indigo-500/50">
+        Get Started
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+    
+    /* Mobile Menu Styles */
+#mobile-menu {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#mobile-menu.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Prevent scrolling when mobile menu is open */
+body.menu-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+</style>
+    
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
+
+    function toggleMobileMenu() {
+        mobileMenu.classList.toggle('hidden');
+        mobileMenu.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
+    }
+
+    mobileMenuButton.addEventListener('click', toggleMobileMenu);
+    closeMobileMenuButton.addEventListener('click', toggleMobileMenu);
+
+    // Close menu when clicking on links
+    Array.from(mobileMenuLinks).forEach(link => {
+        link.addEventListener('click', toggleMobileMenu);
+    });
+});
+    </script>
+
     <!-- Idle Main -->
     <div class="full-container poppins">
       <span class="container-information-button">
@@ -325,8 +392,11 @@ This website is not an official Terabox website and we are not associated with t
     </div>   </div></section> 
 
 
-     <!-- Footer Section -->
-     <footer class="bg-gradient-to-b from-black to-indigo-950/30 pt-20 pb-10">
+   
+ 
+
+    <!-- Footer Section -->
+    <footer class="bg-gradient-to-b from-black to-indigo-950/30 pt-20 pb-10">
       <!-- Footer Top Section - Newsletter -->
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
@@ -337,7 +407,7 @@ This website is not an official Terabox website and we are not associated with t
             class="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 animate-pulse"
           ></div>
 
-<div class="relative grid gap-8 items-center p-4 sm:p-8">
+          <div class="relative grid gap-8 items-center p-4 sm:p-8">
   <div>
     <h3 class="text-2xl font-bold bg-gradient-to-r from-white to-indigo-200 bg-clip-text text-transparent mb-4">
       Stay Updated with TeraDown
@@ -361,8 +431,8 @@ This website is not an official Terabox website and we are not associated with t
       </button>
     </form>
   </div>
-</div></div>
-
+</div>
+</div>
 
         <!-- Main Footer Content -->
         <div
@@ -420,7 +490,7 @@ This website is not an official Terabox website and we are not associated with t
             <ul class="space-y-3">
               <li>
                 <a
-                  href="#"
+                  href="/"
                   class="text-gray-400 hover:text-indigo-400 transition-colors duration-300 flex items-center space-x-2"
                 >
                   <i class="fas fa-chevron-right text-xs"></i>
@@ -438,11 +508,11 @@ This website is not an official Terabox website and we are not associated with t
               </li>
               <li>
                 <a
-                  href="#"
+                  href="contact.html"
                   class="text-gray-400 hover:text-indigo-400 transition-colors duration-300 flex items-center space-x-2"
                 >
                   <i class="fas fa-chevron-right text-xs"></i>
-                  <span>Pricing</span>
+                  <span>Contact</span>
                 </a>
               </li>
               <li>
@@ -551,31 +621,28 @@ This website is not an official Terabox website and we are not associated with t
             <!-- Copyright -->
             <div class="text-gray-400 text-sm">
               <p>© 2025 TeraDown. All rights reserved.</p>
-              <p class="mt-1">
-                Current Time (UTC):
-                <span class="text-indigo-400">2025-01-25 03:10:17</span>
-              </p>
+              
             </div>
 
             <!-- Legal Links -->
             <div class="flex flex-wrap gap-4 md:justify-end text-sm">
               <a
-                href="#"
+                href="terms.html"
                 class="text-gray-400 hover:text-indigo-400 transition-colors duration-300"
                 >Terms & Conditions</a
               >
               <a
-                href="#"
+                href="Privacy-policy.html"
                 class="text-gray-400 hover:text-indigo-400 transition-colors duration-300"
                 >Privacy Policy</a
               >
               <a
-                href="#"
+                href="dmca.html"
                 class="text-gray-400 hover:text-indigo-400 transition-colors duration-300"
                 >DMCA</a
               >
               <a
-                href="#"
+                href="contact.html"
                 class="text-gray-400 hover:text-indigo-400 transition-colors duration-300"
                 >Contact</a
               >
@@ -590,86 +657,81 @@ This website is not an official Terabox website and we are not associated with t
         </div>
       </div>
 
+    
+    </footer>
 
-    <script src="frontend/javascript/style.js"></script>
-    <script src="frontend/javascript/script.js"></script>
-
-    <!-- Add this new script for handling URL parameters -->
-    <script>
-      // Function to get URL parameter
-      function getUrlParameter(name) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(name);
+    <style>
+      /* Additional Footer Styles */
+      .animate-pulse {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
       }
 
-      // Function to update time
-      function updateTime() {
-        const timeDisplay = document.getElementById("current-time");
-        const now = new Date();
-        const formatted =
-          now.getUTCFullYear() +
-          "-" +
-          String(now.getUTCMonth() + 1).padStart(2, "0") +
-          "-" +
-          String(now.getUTCDate()).padStart(2, "0") +
-          " " +
-          String(now.getUTCHours()).padStart(2, "0") +
-          ":" +
-          String(now.getUTCMinutes()).padStart(2, "0") +
-          ":" +
-          String(now.getUTCSeconds()).padStart(2, "0");
-        timeDisplay.textContent = formatted;
-      }
-
-      // Auto process URL when page loads
-      document.addEventListener("DOMContentLoaded", function () {
-        
-
-        // Get URL from parameters
-        const urlParam = getUrlParameter("url");
-        if (urlParam) {
-          // Set the URL in the input field
-          const urlInput = document.getElementById("terabox_url");
-          urlInput.value = urlParam;
-
-          // Automatically trigger the submit button
-          document.getElementById("submit_button").click();
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.1;
         }
+        50% {
+          opacity: 0.3;
+        }
+      }
+    </style>
+
+    <!-- Main JavaScript -->
+    <script>
+      // Initialize GSAP animations
+      gsap.from(".floating", {
+        y: 30,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
       });
 
-      // Add click handler for submit button if not already present in script.js
-      document
-        .getElementById("submit_button")
-        .addEventListener("click", function () {
-          const url = document.getElementById("terabox_url").value.trim();
-          if (url) {
-            // Show processing status
-            const statusMode = document.getElementById("status-mode");
-            statusMode.textContent = "Processing...";
-            statusMode.style.display = "block";
-
-            // Process the URL using your existing processing logic
-            // This should integrate with your existing functionality in script.js
-            processTeraboxUrl(url);
+      // Reveal animations on scroll
+      function reveal() {
+        const reveals = document.querySelectorAll(".reveal");
+        reveals.forEach((element) => {
+          const windowHeight = window.innerHeight;
+          const elementTop = element.getBoundingClientRect().top;
+          if (elementTop < windowHeight - 100) {
+            element.classList.add("active");
           }
         });
-
-      // This function should be defined in your script.js, but if not, here's a placeholder
-      function processTeraboxUrl(url) {
-        // Your existing URL processing logic goes here
-        // Update the result div with the processed content
-        const resultDiv = document.getElementById("result");
-
-        // Example processing - replace with your actual implementation
-        resultDiv.innerHTML = `<div class="processing-result">
-              <h3 style="color:white;">Processing URL:</h3>
-              <p style="color:white;">${url}</p>
-              <div class="processing-status">
-                  <i style="color:white;" class="fa-solid fa-spinner fa-spin"></i>
-                  <span style="color:white;" >just a moment...</span>
-              </div>
-          </div>`;
       }
+
+      window.addEventListener("scroll", reveal);
+
+      // Stats counter animation
+      function animateStats() {
+        const counters = document.querySelectorAll(".stat-counter");
+        counters.forEach((counter) => {
+          const target = parseInt(counter.getAttribute("data-target"));
+          const duration = 2000; // 2 seconds
+          const increment = target / (duration / 16); // 60fps
+          let current = 0;
+
+          const updateCounter = () => {
+            current += increment;
+            if (current < target) {
+              counter.textContent = Math.round(current).toLocaleString();
+              requestAnimationFrame(updateCounter);
+            } else {
+              counter.textContent = target.toLocaleString();
+            }
+          };
+
+          updateCounter();
+        });
+      }
+
+      // Initialize animations when page loads
+      document.addEventListener("DOMContentLoaded", () => {
+        reveal();
+        animateStats();
+      });
     </script>
+
+        <script src="frontend/javascript/style.js"></script>
+    <script src="frontend/javascript/script.js"></script>
   </body>
 </html>
