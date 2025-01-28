@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TeraDL - Terabox Video Downloader</title>
+
+    <!-- CDN Style -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <!-- Local Style -->
+    <link rel="icon" href="assets/icon.png" type="image/png" />
+    <link rel="stylesheet" href="frontend/css/styles_global.css" />
+    <link rel="stylesheet" href="frontend/css/styles_mobile.css" />
+    <link rel="stylesheet" href="frontend/css/overlay_mobile.css" />
+    <link rel="stylesheet" href="frontend/css/zoom_mobile.css" />
+
+    <!-- Caching -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="description" content="Terabox Video Downloader & Streaming" />
+  </head>
+
+  <body>
+    <!-- Idle Main -->
+    <div class="full-container poppins">
+      <span class="container-information-button">
+        <i id="information-button-open" class="fa-solid fa-circle-info"></i>
+      </span>
+
+      <span class="container-status-mode">
+        <span id="status-mode"></span>
+      </span>
+
+      <div class="container-header">
+        <span class="title">TeraDL</span>
+        <span class="subtitle">Terabox Video Downloader & Streaming</span>
+        <div class="time-display">
+          <span id="current-time">2025-01-25 09:07:08</span>
+        </div>
+        <div class="user-display">
+          <span id="user-login">User: Anytu9878978798</span>
+        </div>
+      </div>
+
+      <div class="container-input">
+        <input
+          id="terabox_url"
+          type="text"
+          placeholder="Masukkan URL Terabox"
+          autocomplete="off"
+          autocapitalize="off"
+          autofocus="off"
+          autofill="off"
+          spellcheck="false"
+        />
+        <button id="submit_button" type="button">
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+
+      <div class="container-result">
+        <div id="result" class="box-result"></div>
+      </div>
+    </div>
+
+    <!-- Overlay Zoom Image -->
+    <div id="zoom-container" class="container-zoom-inactive poppins" onclick="unzoom();"></div>
+
+    <script src="frontend/javascript/style.js"></script>
+    <script src="frontend/javascript/script.js"></script>
+
+    <!-- Add this new script for handling URL parameters -->
+    <script>
+      // Function to get URL parameter
+      function getUrlParameter(name) {
+          const urlParams = new URLSearchParams(window.location.search);
+          return urlParams.get(name);
+      }
+
+      // Function to update time
+      function updateTime() {
+          const timeDisplay = document.getElementById('current-time');
+          const now = new Date();
+          const formatted = now.getUTCFullYear() + '-' + 
+                          String(now.getUTCMonth() + 1).padStart(2, '0') + '-' +
+                          String(now.getUTCDate()).padStart(2, '0') + ' ' +
+                          String(now.getUTCHours()).padStart(2, '0') + ':' +
+                          String(now.getUTCMinutes()).padStart(2, '0') + ':' +
+                          String(now.getUTCSeconds()).padStart(2, '0');
+          timeDisplay.textContent = formatted;
+      }
+
+      // Auto process URL when page loads
+      document.addEventListener('DOMContentLoaded', function() {
+          // Start time updates
+          updateTime();
+          setInterval(updateTime, 1000);
+
+          // Get URL from parameters
+          const urlParam = getUrlParameter('url');
+          if (urlParam) {
+              // Set the URL in the input field
+              const urlInput = document.getElementById('terabox_url');
+              urlInput.value = urlParam;
+
+              // Automatically trigger the submit button
+              document.getElementById('submit_button').click();
+          }
+      });
+
+      // Add click handler for submit button if not already present in script.js
+      document.getElementById('submit_button').addEventListener('click', function() {
+          const url = document.getElementById('terabox_url').value.trim();
+          if (url) {
+              // Show processing status
+              const statusMode = document.getElementById('status-mode');
+              statusMode.textContent = 'Processing...';
+              statusMode.style.display = 'block';
+
+              // Process the URL using your existing processing logic
+              // This should integrate with your existing functionality in script.js
+              processTeraboxUrl(url);
+          }
+      });
+
+      // This function should be defined in your script.js, but if not, here's a placeholder
+      function processTeraboxUrl(url) {
+          // Your existing URL processing logic goes here
+          // Update the result div with the processed content
+          const resultDiv = document.getElementById('result');
+          
+          // Example processing - replace with your actual implementation
+          resultDiv.innerHTML = `<div class="processing-result">
+              <h3>Processing URL:</h3>
+              <p>${url}</p>
+              <div class="processing-status">
+                  <i class="fa-solid fa-spinner fa-spin"></i>
+                  <span>Processing your request...</span>
+              </div>
+          </div>`;
+      }
+    </script>
+  </body>
+</html>
