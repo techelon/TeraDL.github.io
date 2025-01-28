@@ -1,8 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta
       name="description"
       content="TeraDown - Premium TeraBox Video & File Downloader with advanced features and lightning-fast speeds"
@@ -34,6 +36,7 @@
 
     <!-- Custom CSS -->
     <style>
+
       * {
         font-family: "Inter", sans-serif;
       }
@@ -192,48 +195,130 @@
 
   <body class="bg-gray-900 text-white">
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass-morphism">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
-          <a
-            href="/"
-            class="flex items-center space-x-2 text-2xl font-bold bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent"
+ <nav class="fixed w-full z-50 glass-morphism">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a
+        href="/"
+        class="flex items-center space-x-2 text-2xl font-bold bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent"
+      >
+        <i class="fas fa-bolt text-indigo-500"></i>
+        <span>TeraDown Pro</span>
+      </a>
+      <div class="hidden md:flex space-x-8">
+        <a
+          href="index.html"
+          class="text-gray-300 hover:text-indigo-500 transition-colors duration-300"
+          >Home</a
+        >
+        <a
+          href="about.html"
+          class="text-gray-300 hover:text-indigo-500 transition-colors duration-300"
+          >About</a
+        >
+        <a
+          href="contact.html"
+          class="text-gray-300 hover:text-indigo-500 transition-colors duration-300"
+          >Contact US</a
+        >
+        <a
+          href="dmca.html"
+          class="text-gray-300 hover:text-indigo-500 transition-colors duration-300"
+          >DMCA</a
+        >
+      </div>
+      <div class="flex items-center space-x-4">
+        <div class="hidden md:block">
+          <button
+            class="px-6 py-2 rounded-full bg-indigo-600 hover:bg-indigo-700 transition-all duration-300 shadow-lg hover:shadow-indigo-500/50"
           >
-            <i class="fas fa-bolt text-indigo-500"></i>
-            <span>TeraDown Pro</span>
-          </a>
-          <div class="hidden md:flex space-x-8">
-            <a
-              href="#how-it-works"
-              class="text-gray-300 hover:text-indigo-500 transition-colors duration-300"
-              >How It Works</a
-            >
-            <a
-              href="#features"
-              class="text-gray-300 hover:text-indigo-500 transition-colors duration-300"
-              >Features</a
-            >
-            <a
-              href="#faq"
-              class="text-gray-300 hover:text-indigo-500 transition-colors duration-300"
-              >FAQ</a
-            >
-            <a
-              href="#pricing"
-              class="text-gray-300 hover:text-indigo-500 transition-colors duration-300"
-              >Pricing</a
-            >
-          </div>
-          <div class="hidden md:block">
-            <button
-              class="px-6 py-2 rounded-full bg-indigo-600 hover:bg-indigo-700 transition-all duration-300 shadow-lg hover:shadow-indigo-500/50"
-            >
-              Get Started
-            </button>
-          </div>
+            Get Started
+          </button>
+        </div>
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
         </div>
       </div>
-    </nav>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu (Moved outside nav) -->
+<div id="mobile-menu" class="hidden fixed inset-0 z-[100] bg-gray-900/95 backdrop-blur-sm md:hidden">
+  <div class="flex flex-col min-h-screen">
+    <div class="flex justify-end p-4">
+      <button id="close-mobile-menu" class="text-gray-400 hover:text-white">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    <div class="flex flex-col items-center justify-center flex-grow space-y-8 p-8">
+      <a href="index.html" class="text-gray-300 hover:text-indigo-500 transition-colors duration-300 text-lg">Home</a>
+      <a href="about.html" class="text-gray-300 hover:text-indigo-500 transition-colors duration-300 text-lg">About</a>
+      <a href="contact.html" class="text-gray-300 hover:text-indigo-500 transition-colors duration-300 text-lg">Contact US</a>
+      <a href="dmca" class="text-gray-300 hover:text-indigo-500 transition-colors duration-300 text-lg">DMCA</a>
+      <button class="px-6 py-2 rounded-full bg-indigo-600 hover:bg-indigo-700 transition-all duration-300 shadow-lg hover:shadow-indigo-500/50">
+        Get Started
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+    
+    /* Mobile Menu Styles */
+#mobile-menu {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#mobile-menu.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Prevent scrolling when mobile menu is open */
+body.menu-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+</style>
+    
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
+
+    function toggleMobileMenu() {
+        mobileMenu.classList.toggle('hidden');
+        mobileMenu.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
+    }
+
+    mobileMenuButton.addEventListener('click', toggleMobileMenu);
+    closeMobileMenuButton.addEventListener('click', toggleMobileMenu);
+
+    // Close menu when clicking on links
+    Array.from(mobileMenuLinks).forEach(link => {
+        link.addEventListener('click', toggleMobileMenu);
+    });
+});
+    </script>
 
     <!-- Hero Section -->
     <div class="gradient-bg min-h-screen flex items-center pt-16">
@@ -257,62 +342,93 @@
           </p>
 
           <!-- Search Container -->
-          <div class="search-container max-w-3xl mx-auto rounded-2xl p-8">
-            <div class="flex flex-col sm:flex-row gap-4">
-              <div class="download-container text-center py-8">
+         <!-- Search Container -->
+<div class="search-container max-w-3xl mx-auto rounded-2xl p-8">
+    <div class="flex flex-col lg:flex-row gap-4">
+        <div class="download-container w-full">
+            <!-- Input and Button Container -->
+            <div class="flex flex-col lg:flex-row gap-4 items-center">
                 <input
-                  type="text"
-                  id="urlInput"
-                  placeholder="Enter URL here..."
-                  class="w-full max-w-md p-3 rounded-md border border-gray-700 bg-gray-900 text-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none"
+                    type="text"
+                    id="urlInput"
+                    placeholder="Enter URL here..."
+                    class="w-full p-3 rounded-md border border-gray-700 bg-gray-900 text-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none"
                 />
                 <button
-                  id="downloadButton"
-                  class="mt-4 px-6 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 transition-all duration-300"
+                    id="downloadButton"
+                    class="w-full lg:w-auto px-8 py-3 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 transition-all duration-300 whitespace-nowrap"
                 >
-                  Download
+                    Download
                 </button>
-              </div>
             </div>
-            <div id="error-message" class="mt-4 text-red-500 hidden"></div>
+        </div>
+    </div>
+    <div id="error-message" class="mt-4 text-red-500 hidden"></div>
 
-            <script>
-              document
-                .getElementById("downloadButton")
-                .addEventListener("click", function () {
-                  const urlInput = document
-                    .getElementById("urlInput")
-                    .value.trim();
+ 
 
-                  if (urlInput) {
-                    // Redirect to download.html with the URL as a query parameter
-                    window.location.href = `download.html?url=${encodeURIComponent(
-                      urlInput
-                    )}`;
-                  } else {
-                    alert("Please enter a valid URL!");
-                  }
-                });
-            </script>
+    <!-- Security Badge -->
+    <div class="mt-6 flex flex-wrap justify-center gap-4 text-sm text-gray-400">
+        <div class="flex items-center">
+            <i class="fas fa-shield-check mr-2 text-green-500"></i>
+            <span>Secure Download</span>
+        </div>
+        <div class="flex items-center">
+            <i class="fas fa-bolt mr-2 text-yellow-500"></i>
+            <span>Ultra-Fast Speed</span>
+        </div>
+        <div class="flex items-center">
+            <i class="fas fa-lock mr-2 text-blue-500"></i>
+            <span>Privacy Protected</span>
+        </div>
+    </div>
+</div>
 
-            <!-- Security Badge -->
-            <div
-              class="mt-6 flex items-center justify-center space-x-4 text-sm text-gray-400"
-            >
-              <div class="flex items-center">
-                <i class="fas fa-shield-check mr-2 text-green-500"></i>
-                <span>Secure Download</span>
-              </div>
-              <div class="flex items-center">
-                <i class="fas fa-bolt mr-2 text-yellow-500"></i>
-                <span>Ultra-Fast Speed</span>
-              </div>
-              <div class="flex items-center">
-                <i class="fas fa-lock mr-2 text-blue-500"></i>
-                <span>Privacy Protected</span>
-              </div>
-            </div>
-          </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById("downloadButton").addEventListener("click", function() {
+        const urlInput = document.getElementById("urlInput").value.trim();
+
+        if (urlInput) {
+            // Redirect to download.html with the URL as a query parameter
+            window.location.href = `download.html?url=${encodeURIComponent(urlInput)}`;
+        } else {
+            alert("Please enter a valid URL!");
+        }
+    });
+});
+</script>
+
+<style>
+/* Additional styles for the download section */
+@media (min-width: 1024px) {
+    .download-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+}
+
+/* Input focus effect */
+#urlInput:focus {
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+/* Download button hover effect */
+#downloadButton:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+/* Security badges hover effect */
+.security-badge {
+    transition: transform 0.2s ease;
+}
+
+.security-badge:hover {
+    transform: translateY(-2px);
+}
+</style>
+        
 
           <!-- Stats Section -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
@@ -510,9 +626,9 @@
                     ></i>
                   </div>
                   <div class="text-center mt-6">
-                    <p class="text-gray-400">Current Date (UTC):</p>
+                    <p class="text-gray-400"></p>
                     <p class="text-indigo-400 font-semibold">
-                      2025-01-25 02:51:02
+                     
                     </p>
                   </div>
                 </div>
@@ -550,12 +666,12 @@
           <div
             class="glass-morphism p-4 rounded-xl text-center hover:border-indigo-500/50 transition-all duration-300"
           >
-            <span class="text-gray-300">ww.mirrobox.com</span>
+            <span class="text-gray-300">mirrobox.com</span>
           </div>
           <div
             class="glass-morphism p-4 rounded-xl text-center hover:border-indigo-500/50 transition-all duration-300"
           >
-            <span class="text-gray-300">www.nephobox.com</span>
+            <span class="text-gray-300">nephobox.com</span>
           </div>
           <div
             class="glass-morphism p-4 rounded-xl text-center hover:border-indigo-500/50 transition-all duration-300"
@@ -565,7 +681,7 @@
           <div
             class="glass-morphism p-4 rounded-xl text-center hover:border-indigo-500/50 transition-all duration-300"
           >
-            <span class="text-gray-300">www.freeterabox.com</span>
+            <span class="text-gray-300">freeterabox.com</span>
           </div>
           <div
             class="glass-morphism p-4 rounded-xl text-center hover:border-indigo-500/50 transition-all duration-300"
@@ -605,7 +721,7 @@
           <div
             class="glass-morphism p-4 rounded-xl text-center hover:border-indigo-500/50 transition-all duration-300"
           >
-            <span class="text-gray-300">www.terabox.ap</span>
+            <span class="text-gray-300">terabox.ap</span>
           </div>
           <!-- Add all remaining URLs similarly -->
         </div>
@@ -1026,35 +1142,32 @@
             class="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 animate-pulse"
           ></div>
 
-          <div class="relative grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <h3
-                class="text-2xl font-bold bg-gradient-to-r from-white to-indigo-200 bg-clip-text text-transparent mb-4"
-              >
-                Stay Updated with TeraDown
-              </h3>
-              <p class="text-gray-400">
-                Get the latest updates, new features, and special offers
-                directly to your inbox
-              </p>
-            </div>
-            <div>
-              <form class="flex space-x-2">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  class="flex-1 px-4 py-3 rounded-xl bg-white/5 border border-gray-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all duration-300 text-white"
-                />
-                <button
-                  class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-xl transition-all duration-300 flex items-center space-x-2"
-                >
-                  <span>Subscribe</span>
-                  <i class="fas fa-paper-plane"></i>
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
+          <div class="relative grid gap-8 items-center p-4 sm:p-8">
+  <div>
+    <h3 class="text-2xl font-bold bg-gradient-to-r from-white to-indigo-200 bg-clip-text text-transparent mb-4">
+      Stay Updated with TeraDown
+    </h3>
+    <p class="text-gray-400">
+      Get the latest updates, new features, and special offers directly to your inbox
+    </p>
+  </div>
+  <div>
+    <form class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-2">
+      <input
+        type="email"
+        placeholder="Enter your email"
+        class="flex-1 px-4 py-3 rounded-xl bg-white/5 border border-gray-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all duration-300 text-white"
+      />
+      <button
+        class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2"
+      >
+        <span>Subscribe</span>
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </form>
+  </div>
+</div>
+</div>
 
         <!-- Main Footer Content -->
         <div
@@ -1112,7 +1225,7 @@
             <ul class="space-y-3">
               <li>
                 <a
-                  href="#"
+                  href="/"
                   class="text-gray-400 hover:text-indigo-400 transition-colors duration-300 flex items-center space-x-2"
                 >
                   <i class="fas fa-chevron-right text-xs"></i>
@@ -1130,11 +1243,11 @@
               </li>
               <li>
                 <a
-                  href="#"
+                  href="contact.html"
                   class="text-gray-400 hover:text-indigo-400 transition-colors duration-300 flex items-center space-x-2"
                 >
                   <i class="fas fa-chevron-right text-xs"></i>
-                  <span>Pricing</span>
+                  <span>Contact</span>
                 </a>
               </li>
               <li>
@@ -1243,31 +1356,28 @@
             <!-- Copyright -->
             <div class="text-gray-400 text-sm">
               <p>© 2025 TeraDown. All rights reserved.</p>
-              <p class="mt-1">
-                Current Time (UTC):
-                <span class="text-indigo-400">2025-01-25 03:10:17</span>
-              </p>
+              
             </div>
 
             <!-- Legal Links -->
             <div class="flex flex-wrap gap-4 md:justify-end text-sm">
               <a
-                href="#"
+                href="terms.html"
                 class="text-gray-400 hover:text-indigo-400 transition-colors duration-300"
                 >Terms & Conditions</a
               >
               <a
-                href="#"
+                href="Privacy-policy.html"
                 class="text-gray-400 hover:text-indigo-400 transition-colors duration-300"
                 >Privacy Policy</a
               >
               <a
-                href="#"
+                href="dmca.html"
                 class="text-gray-400 hover:text-indigo-400 transition-colors duration-300"
                 >DMCA</a
               >
               <a
-                href="#"
+                href="contact.html"
                 class="text-gray-400 hover:text-indigo-400 transition-colors duration-300"
                 >Contact</a
               >
@@ -1282,35 +1392,7 @@
         </div>
       </div>
 
-      <!-- Status Bar -->
-      <div
-        class="fixed bottom-0 left-0 right-0 bg-black/90 backdrop-blur-sm py-2 px-4"
-      >
-        <div
-          class="max-w-7xl mx-auto flex justify-between items-center text-sm"
-        >
-          <div class="flex items-center space-x-4">
-            <span class="text-gray-400">
-              <i class="fas fa-user text-indigo-400 mr-2"></i>
-              User: <span class="text-indigo-400">Anytu9878978798</span>
-            </span>
-            <span class="text-gray-400">
-              <i class="fas fa-clock text-indigo-400 mr-2"></i>
-              Session: <span class="text-indigo-400">Active</span>
-            </span>
-          </div>
-          <div class="flex items-center space-x-4">
-            <span class="text-gray-400">
-              <i class="fas fa-server text-green-400 mr-2"></i>
-              Server Status: <span class="text-green-400">Online</span>
-            </span>
-            <span class="text-gray-400">
-              <i class="fas fa-bolt text-yellow-400 mr-2"></i>
-              Speed: <span class="text-yellow-400">Optimal</span>
-            </span>
-          </div>
-        </div>
-      </div>
+    
     </footer>
 
     <style>
