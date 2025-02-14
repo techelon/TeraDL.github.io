@@ -1,0 +1,877 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta
+      name="description"
+      content="TeraDown - Premium TeraBox Video & File Downloader with advanced features and lightning-fast speeds"
+    />
+    <meta
+      name="keywords"
+      content="TeraBox downloader, premium downloader, fast TeraBox download, HD video download"
+    />
+    <meta name="author" content="TeraDown" />
+    <title>TeraDown Pro - Premium TeraBox Video & File Downloader</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+
+    <!-- Font Awesome Pro -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <style>
+
+      * {
+        font-family: "Inter", sans-serif;
+      }
+
+      .gradient-bg {
+        background: linear-gradient(
+          135deg,
+          #0f172a 0%,
+          #1e1b4b 50%,
+          #312e81 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .gradient-bg::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          circle at 50% 50%,
+          rgba(99, 102, 241, 0.15) 0%,
+          transparent 50%
+        );
+        animation: pulse 8s ease-in-out infinite;
+      }
+
+      .glass-morphism {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      }
+
+      .search-container {
+        backdrop-filter: blur(16px);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      }
+
+      .feature-card {
+        background: rgba(17, 24, 39, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        border-color: rgba(99, 102, 241, 0.5);
+      }
+
+      .floating {
+        animation: floating 3s ease-in-out infinite;
+      }
+
+      @keyframes floating {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #1f2937;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #4f46e5;
+        border-radius: 4px;
+      }
+
+      /* Modern Button Styles */
+      .download-btn {
+        background: linear-gradient(45deg, #4f46e5, #6366f1);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .download-btn::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        transform: rotate(45deg);
+        transition: 0.5s;
+      }
+
+      .download-btn:hover::after {
+        left: 100%;
+      }
+
+      /* Modern Input Styles */
+      .modern-input {
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .modern-input:focus {
+        border-color: #4f46e5;
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
+      }
+
+      /* Stats Counter Animation */
+      .stat-counter {
+        transition: all 0.3s ease;
+      }
+
+      /* Reveal Animation */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease;
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+
+  <body class="bg-gray-900 text-white">
+    <!-- Navigation -->
+ <nav class="fixed w-full z-50 glass-morphism">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a
+        href="/"
+        class="flex items-center space-x-2 text-2xl font-bold bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent"
+      >
+        <i class="fas fa-bolt text-indigo-500"></i>
+        <span>TeraDown Pro</span>
+      </a>
+      <div class="hidden md:flex space-x-8">
+        <a
+          href="index.html"
+          class="text-gray-300 hover:text-indigo-500 transition-colors duration-300"
+          >Home</a
+        >
+        <a
+          href="about.html"
+          class="text-gray-300 hover:text-indigo-500 transition-colors duration-300"
+          >About</a
+        >
+        <a
+          href="contact.html"
+          class="text-gray-300 hover:text-indigo-500 transition-colors duration-300"
+          >Contact US</a
+        >
+        <a
+          href="dmca.html"
+          class="text-gray-300 hover:text-indigo-500 transition-colors duration-300"
+          >DMCA</a
+        >
+      </div>
+      <div class="flex items-center space-x-4">
+        <div class="hidden md:block">
+          <button
+            class="px-6 py-2 rounded-full bg-indigo-600 hover:bg-indigo-700 transition-all duration-300 shadow-lg hover:shadow-indigo-500/50"
+          >
+            Get Started
+          </button>
+        </div>
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu (Moved outside nav) -->
+<div id="mobile-menu" class="hidden fixed inset-0 z-[100] bg-gray-900/95 backdrop-blur-sm md:hidden">
+  <div class="flex flex-col min-h-screen">
+    <div class="flex justify-end p-4">
+      <button id="close-mobile-menu" class="text-gray-400 hover:text-white">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    <div class="flex flex-col items-center justify-center flex-grow space-y-8 p-8">
+      <a href="index.html" class="text-gray-300 hover:text-indigo-500 transition-colors duration-300 text-lg">Home</a>
+      <a href="about.html" class="text-gray-300 hover:text-indigo-500 transition-colors duration-300 text-lg">About</a>
+      <a href="contact.html" class="text-gray-300 hover:text-indigo-500 transition-colors duration-300 text-lg">Contact US</a>
+      <a href="dmca" class="text-gray-300 hover:text-indigo-500 transition-colors duration-300 text-lg">DMCA</a>
+      <button class="px-6 py-2 rounded-full bg-indigo-600 hover:bg-indigo-700 transition-all duration-300 shadow-lg hover:shadow-indigo-500/50">
+        Get Started
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+    
+    /* Mobile Menu Styles */
+#mobile-menu {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#mobile-menu.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Prevent scrolling when mobile menu is open */
+body.menu-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+</style>
+    
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
+
+    function toggleMobileMenu() {
+        mobileMenu.classList.toggle('hidden');
+        mobileMenu.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
+    }
+
+    mobileMenuButton.addEventListener('click', toggleMobileMenu);
+    closeMobileMenuButton.addEventListener('click', toggleMobileMenu);
+
+    // Close menu when clicking on links
+    Array.from(mobileMenuLinks).forEach(link => {
+        link.addEventListener('click', toggleMobileMenu);
+    });
+});
+    </script>
+
+ 
+ 
+ 
+ 
+ <!-- Contact Section -->
+<div class="gradient-bg min-h-screen pt-24 pb-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <div class="floating inline-block mb-4 px-4 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20">
+                <span class="text-indigo-400">Get In Touch</span>
+            </div>
+            <h1 class="text-4xl sm:text-5xl font-bold mb-8 bg-gradient-to-r from-white to-indigo-200 bg-clip-text text-transparent">
+                Contact Us
+            </h1>
+            <p class="text-xl text-gray-400">
+                Have questions? We'd love to hear from you.
+            </p>
+        </div>
+
+        <!-- Contact Form Card -->
+        <div class="glass-morphism p-8 rounded-2xl mb-12 reveal">
+            <form id="contactForm" class="space-y-6">
+                <!-- Name Input -->
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Your Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                        class="w-full p-3 rounded-md border border-gray-700 bg-gray-900/50 text-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300"
+                        placeholder="Enter your name"
+                    >
+                </div>
+
+                <!-- Email Input -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        class="w-full p-3 rounded-md border border-gray-700 bg-gray-900/50 text-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300"
+                        placeholder="Enter your email"
+                    >
+                </div>
+
+                <!-- Message Input -->
+                <div>
+                    <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Your Message</label>
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="6"
+                        required
+                        class="w-full p-3 rounded-md border border-gray-700 bg-gray-900/50 text-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300"
+                        placeholder="Enter your message"
+                    ></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="text-center">
+                    <button
+                        type="submit"
+                        class="px-8 py-3 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition-all duration-300 transform hover:-translate-y-1"
+                    >
+                        Send Message
+                        <i class="fas fa-paper-plane ml-2"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+      
+        <!-- Social Share Section -->
+<div class="text-center mb-12 reveal">
+    <h3 class="text-2xl font-bold text-white mb-6">Share With Friends</h3>
+    <div class="flex flex-wrap justify-center gap-4">
+        <!-- Facebook -->
+        <a 
+            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fteradown.com%2Fcontact-us"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center space-x-2 px-6 py-3 bg-blue-600 rounded-full hover:bg-blue-700 transition-all duration-300"
+        >
+            <i class="fab fa-facebook-f"></i>
+            <span>Facebook</span>
+        </a>
+
+        <!-- Twitter -->
+        <a 
+            href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fteradown.com%2Fcontact-us&text=Check%20out%20this%20quick%20and%20amazing%20website%20for%20downloading%20Terabox%20videos%20and%20files!"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center space-x-2 px-6 py-3 bg-sky-500 rounded-full hover:bg-sky-600 transition-all duration-300"
+        >
+            <i class="fab fa-twitter"></i>
+            <span>Twitter</span>
+        </a>
+
+        <!-- WhatsApp -->
+        <a 
+            href="whatsapp://send?text=Check%20out%20TeraDown%20-%20The%20best%20Terabox%20downloader!%20https%3A%2F%2Fteradown.com%2Fcontact-us"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center space-x-2 px-6 py-3 bg-green-600 rounded-full hover:bg-green-700 transition-all duration-300"
+        >
+            <i class="fab fa-whatsapp"></i>
+            <span>WhatsApp</span>
+        </a>
+
+        <!-- Telegram -->
+        <a 
+            href="https://t.me/share/url?url=https%3A%2F%2Fteradown.com%2Fcontact-us&text=Check%20out%20this%20quick%20and%20amazing%20website%20for%20downloading%20Terabox%20videos%20and%20files!"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center space-x-2 px-6 py-3 bg-blue-500 rounded-full hover:bg-blue-600 transition-all duration-300"
+        >
+            <i class="fab fa-telegram-plane"></i>
+            <span>Telegram</span>
+        </a>
+
+        <!-- Reddit -->
+        <a 
+            href="https://reddit.com/submit?url=https%3A%2F%2Fteradown.com%2Fcontact-us&title=TeraDown%20-%20The%20Ultimate%20Terabox%20Downloader"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center space-x-2 px-6 py-3 bg-orange-600 rounded-full hover:bg-orange-700 transition-all duration-300"
+        >
+            <i class="fab fa-reddit-alien"></i>
+            <span>Reddit</span>
+        </a>
+
+        <!-- Pinterest -->
+        <a 
+            href="https://pinterest.com/pin/create/button/?url=https%3A%2F%2Fteradown.com%2Fcontact-us&description=TeraDown%20-%20The%20Ultimate%20Terabox%20Downloader"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center space-x-2 px-6 py-3 bg-red-600 rounded-full hover:bg-red-700 transition-all duration-300"
+        >
+            <i class="fab fa-pinterest-p"></i>
+            <span>Pinterest</span>
+        </a>
+
+        <!-- LinkedIn -->
+        <a 
+            href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fteradown.com%2Fcontact-us&title=TeraDown%20-%20Contact%20Us"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center space-x-2 px-6 py-3 bg-blue-700 rounded-full hover:bg-blue-800 transition-all duration-300"
+        >
+            <i class="fab fa-linkedin-in"></i>
+            <span>LinkedIn</span>
+        </a>
+    </div>
+
+   
+</div>
+        <!-- Additional Contact Info -->
+        <div class="grid md:grid-cols-3 gap-8 reveal">
+            <!-- Email -->
+            <div class="glass-morphism p-6 rounded-xl text-center hover:transform hover:scale-105 transition-all duration-300">
+                <i class="fas fa-envelope text-3xl text-indigo-400 mb-4"></i>
+                <h3 class="text-lg font-semibold text-white mb-2">Email Us</h3>
+                <p class="text-gray-400">support@teradown.com</p>
+            </div>
+
+            <!-- Support Hours -->
+            <div class="glass-morphism p-6 rounded-xl text-center hover:transform hover:scale-105 transition-all duration-300">
+                <i class="fas fa-clock text-3xl text-indigo-400 mb-4"></i>
+                <h3 class="text-lg font-semibold text-white mb-2">Support Hours</h3>
+                <p class="text-gray-400">24/7 Support</p>
+            </div>
+
+            <!-- Location -->
+            <div class="glass-morphism p-6 rounded-xl text-center hover:transform hover:scale-105 transition-all duration-300">
+                <i class="fas fa-globe text-3xl text-indigo-400 mb-4"></i>
+                <h3 class="text-lg font-semibold text-white mb-2">Location</h3>
+                <p class="text-gray-400">Global Service</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Form Handling Script -->
+<script>
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Get form values
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    
+    // Here you would typically send this data to your server
+    // For now, we'll just show an alert
+    alert('Thank you for your message! We will get back to you soon.');
+    
+    // Reset form
+    this.reset();
+});
+</script>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+    <!-- Footer Section -->
+    <footer class="bg-gradient-to-b from-black to-indigo-950/30 pt-20 pb-10">
+      <!-- Footer Top Section - Newsletter -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="glass-morphism rounded-2xl p-8 mb-16 relative overflow-hidden"
+        >
+          <!-- Background Animation -->
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 animate-pulse"
+          ></div>
+
+          <div class="relative grid gap-8 items-center p-4 sm:p-8">
+  <div>
+    <h3 class="text-2xl font-bold bg-gradient-to-r from-white to-indigo-200 bg-clip-text text-transparent mb-4">
+      Stay Updated with TeraDown
+    </h3>
+    <p class="text-gray-400">
+      Get the latest updates, new features, and special offers directly to your inbox
+    </p>
+  </div>
+  <div>
+    <form class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-2">
+      <input
+        type="email"
+        placeholder="Enter your email"
+        class="flex-1 px-4 py-3 rounded-xl bg-white/5 border border-gray-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all duration-300 text-white"
+      />
+      <button
+        class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2"
+      >
+        <span>Subscribe</span>
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </form>
+  </div>
+</div>
+</div>
+
+        <!-- Main Footer Content -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16"
+        >
+          <!-- Company Info -->
+          <div class="space-y-6">
+            <div>
+              <a href="/" class="flex items-center space-x-2">
+                <i
+                  class="fas fa-cloud-download-alt text-3xl text-indigo-500"
+                ></i>
+                <span
+                  class="text-2xl font-bold bg-gradient-to-r from-white to-indigo-200 bg-clip-text text-transparent"
+                >
+                  TeraDown
+                </span>
+              </a>
+            </div>
+            <p class="text-gray-400 leading-relaxed">
+              Professional TeraBox downloader service with over 5 million
+              satisfied users worldwide.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-indigo-500/20 transition-all duration-300"
+              >
+                <i class="fab fa-twitter text-gray-400 hover:text-white"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-indigo-500/20 transition-all duration-300"
+              >
+                <i class="fab fa-discord text-gray-400 hover:text-white"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-indigo-500/20 transition-all duration-300"
+              >
+                <i class="fab fa-telegram text-gray-400 hover:text-white"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-indigo-500/20 transition-all duration-300"
+              >
+                <i class="fab fa-github text-gray-400 hover:text-white"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <h4 class="text-lg font-semibold text-white mb-6">Quick Links</h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="/"
+                  class="text-gray-400 hover:text-indigo-400 transition-colors duration-300 flex items-center space-x-2"
+                >
+                  <i class="fas fa-chevron-right text-xs"></i>
+                  <span>Home</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-indigo-400 transition-colors duration-300 flex items-center space-x-2"
+                >
+                  <i class="fas fa-chevron-right text-xs"></i>
+                  <span>How it Works</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="contact.html"
+                  class="text-gray-400 hover:text-indigo-400 transition-colors duration-300 flex items-center space-x-2"
+                >
+                  <i class="fas fa-chevron-right text-xs"></i>
+                  <span>Contact</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-indigo-400 transition-colors duration-300 flex items-center space-x-2"
+                >
+                  <i class="fas fa-chevron-right text-xs"></i>
+                  <span>FAQ</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-indigo-400 transition-colors duration-300 flex items-center space-x-2"
+                >
+                  <i class="fas fa-chevron-right text-xs"></i>
+                  <span>Blog</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Other Tools -->
+          <div>
+            <h4 class="text-lg font-semibold text-white mb-6">Other Tools</h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-indigo-400 transition-colors duration-300 flex items-center space-x-2"
+                >
+                  <i class="fab fa-spotify text-xs"></i>
+                  <span>Spotify Downloader</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-indigo-400 transition-colors duration-300 flex items-center space-x-2"
+                >
+                  <i class="fas fa-image text-xs"></i>
+                  <span>Pinterest Downloader</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-indigo-400 transition-colors duration-300 flex items-center space-x-2"
+                >
+                  <i class="fab fa-instagram text-xs"></i>
+                  <span>Instagram Downloader</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-indigo-400 transition-colors duration-300 flex items-center space-x-2"
+                >
+                  <i class="fas fa-laugh text-xs"></i>
+                  <span>iFunny Downloader</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact Info -->
+          <div>
+            <h4 class="text-lg font-semibold text-white mb-6">Contact Us</h4>
+            <ul class="space-y-4">
+              <li class="flex items-start space-x-3">
+                <i class="fas fa-envelope mt-1 text-indigo-400"></i>
+                <span class="text-gray-400">support@teradown.com</span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <i class="fas fa-clock mt-1 text-indigo-400"></i>
+                <span class="text-gray-400">24/7 Support</span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <i class="fas fa-map-marker-alt mt-1 text-indigo-400"></i>
+                <span class="text-gray-400">Global Service</span>
+              </li>
+              <li>
+                <div class="flex items-center space-x-2 mt-4">
+                  <span
+                    class="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-sm"
+                  >
+                    <i class="fas fa-check-circle mr-1"></i>
+                    System Online
+                  </span>
+                  <span
+                    class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-sm"
+                  >
+                    <i class="fas fa-server mr-1"></i>
+                    Servers Active
+                  </span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="pt-8 border-t border-gray-800">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Copyright -->
+            <div class="text-gray-400 text-sm">
+              <p>© 2025 TeraDown. All rights reserved.</p>
+              
+            </div>
+
+            <!-- Legal Links -->
+            <div class="flex flex-wrap gap-4 md:justify-end text-sm">
+              <a
+                href="terms.html"
+                class="text-gray-400 hover:text-indigo-400 transition-colors duration-300"
+                >Terms & Conditions</a
+              >
+              <a
+                href="Privacy-policy.html"
+                class="text-gray-400 hover:text-indigo-400 transition-colors duration-300"
+                >Privacy Policy</a
+              >
+              <a
+                href="dmca.html"
+                class="text-gray-400 hover:text-indigo-400 transition-colors duration-300"
+                >DMCA</a
+              >
+              <a
+                href="contact.html"
+                class="text-gray-400 hover:text-indigo-400 transition-colors duration-300"
+                >Contact</a
+              >
+            </div>
+          </div>
+
+          <!-- Disclaimer -->
+          <div class="mt-6 text-xs text-gray-500 text-center">
+            This website is not an official TeraBox website and we are not
+            associated with terabox.app or Flextech Inc.
+          </div>
+        </div>
+      </div>
+
+    
+    </footer>
+
+    <style>
+      /* Additional Footer Styles */
+      .animate-pulse {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+    </style>
+
+    <!-- Main JavaScript -->
+    <script>
+      // Initialize GSAP animations
+      gsap.from(".floating", {
+        y: 30,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+      });
+
+      // Reveal animations on scroll
+      function reveal() {
+        const reveals = document.querySelectorAll(".reveal");
+        reveals.forEach((element) => {
+          const windowHeight = window.innerHeight;
+          const elementTop = element.getBoundingClientRect().top;
+          if (elementTop < windowHeight - 100) {
+            element.classList.add("active");
+          }
+        });
+      }
+
+      window.addEventListener("scroll", reveal);
+
+      // Stats counter animation
+      function animateStats() {
+        const counters = document.querySelectorAll(".stat-counter");
+        counters.forEach((counter) => {
+          const target = parseInt(counter.getAttribute("data-target"));
+          const duration = 2000; // 2 seconds
+          const increment = target / (duration / 16); // 60fps
+          let current = 0;
+
+          const updateCounter = () => {
+            current += increment;
+            if (current < target) {
+              counter.textContent = Math.round(current).toLocaleString();
+              requestAnimationFrame(updateCounter);
+            } else {
+              counter.textContent = target.toLocaleString();
+            }
+          };
+
+          updateCounter();
+        });
+      }
+
+      // Initialize animations when page loads
+      document.addEventListener("DOMContentLoaded", () => {
+        reveal();
+        animateStats();
+      });
+    </script>
+  </body>
+</html>
